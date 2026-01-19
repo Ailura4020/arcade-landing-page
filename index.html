@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcadeGPU - Create the Future</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <nav class="navbar">
+        <div class="logo">ARCADE<span class="highlight">GPU</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Start</a></li>
+            <li><a href="#showcase">Games</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#" class="btn-primary">Download Engine</a></li>
+        </ul>
+        <div class="hamburger">
+    <span class="span1"></span>
+    <span class="span2"></span>
+    <span class="span3"></span>
+</div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content">
+            <h1 class="main-title">READY PLAYER <span class="glitch" data-text="ONE">ONE</span> ?</h1>
+            <p class="hero-subtitle">Le moteur open-source pour les créateurs de mondes virtuels.</p>
+            
+            <div class="cta-group">
+                <button class="btn-arcade">PRESS START</button>
+                <div class="scroll-indicator">
+                    <span>v</span> Scroll to Play <span>v</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase" class="section-padding">
+    <div class="container">
+        <h2 class="section-title">Indie <span class="highlight">Legends</span></h2>
+        <p class="section-subtitle">Ils ont repoussé les limites avec ArcadeGPU.</p>
+
+     <div class="games-grid" id="games-container">
+    </div>
+                </div>
+    </div>
+</section>
+<section id="community" class="section-dark">
+    <div class="container">
+        <div class="community-content">
+            <h2 class="section-title">Join the <span class="highlight">Gang</span></h2>
+            <p class="section-subtitle">Déjà 500+ créateurs sur notre Discord.</p>
+            
+            <div class="testimonials-grid">
+                <article class="testimonial-card">
+                    <p class="quote">"Enfin un moteur qui ne demande pas 32Go de RAM. L'esprit Arcade est bien là."</p>
+                    <div class="author">
+                        <div class="avatar-circle"></div> <span>@PixelMaster_99</span>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <p class="quote">"Le code est propre, la doc est claire. J'ai porté mon jeu sur Switch en 1 semaine."</p>
+                    <div class="author">
+                        <div class="avatar-circle"></div>
+                        <span>@IndieDevSara</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="discord-cta">
+                <a href="#" class="btn-primary">Rejoindre le Discord</a>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            
+            <div class="footer-brand">
+                <h3>ARCADE<span class="highlight">GPU</span></h3>
+                <p>Le moteur conçu pour les créateurs indépendants. Open Source et gratuit pour toujours.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#hero">Start</a></li>
+                    <li><a href="#showcase">Jeux</a></li>
+                    <li><a href="#community">Communauté</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-socials">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Discord</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ArcadeGPU Project. Design by <span class="highlight">Anonyme</span>.</p>
+        </div>
+    </div>
+</footer>
+<div id="game-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        
+        <div class="modal-header">
+            <h2 id="modal-title">Titre du Jeu</h2>
+            <span id="modal-tag" class="badge">TAG</span>
+        </div>
+
+        <div class="modal-body">
+            <p id="modal-desc">Description complète du jeu...</p>
+            
+            <div class="modal-actions">
+                <a id="btn-download" href="#" target="_blank" class="btn-primary">Télécharger</a>
+                <a id="btn-github" href="#" target="_blank" class="btn-arcade">Code Source</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="js/script.js"></script>
+</body>
+</html>

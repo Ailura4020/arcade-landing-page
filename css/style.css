@@ -1,0 +1,546 @@
+/* =========================================
+   1. IMPORT DES FONTS & CONFIGURATION
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@300;500;700&display=swap');
+
+:root {
+    /* --- PALETTE "URBAN BRAWL" (Inspirée de SoR4) --- */
+    
+    /* FOND : On remplace le noir pur par un "Bleu Nuit Bitume" */
+    --bg-color: #0d1117;       
+    --text-main: #ffffff;      
+    
+    /* ACCENTS : C'est là que ça change tout */
+    --neon-pink: #ff3c00;      /* Rouge/Orange vif (Couleur de la barre de vie/Danger) */
+    --neon-blue: #ffcc00;      /* Jaune "Flash" (Typique des logos Arcade et des éclairs) */
+    --neon-purple: #5c6bc0;    /* Bleu délavé (Pour les ombres et contours) */
+    
+    /* TYPOGRAPHIE (On garde les mêmes pour l'instant) */
+    --font-headers: 'Press Start 2P', cursive; 
+    --font-text: 'Rajdhani', sans-serif;       
+}
+
+/* =========================================
+   2. RESET & BASE
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-text);
+    overflow-x: hidden; /* Pas de scroll horizontal */
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* =========================================
+   3. EFFET SCANLINES (L'EFFET TV CRT)
+   ========================================= */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    z-index: 9999;
+    pointer-events: none; /* On peut cliquer à travers */
+}
+
+/* =========================================
+   4. NAVIGATION (NAVBAR)
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(5, 5, 16, 0.95);
+    border-bottom: 2px solid var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+
+.logo {
+    font-family: var(--font-headers);
+    font-size: 1.2rem;
+    color: #fff;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 0px var(--neon-pink);
+}
+
+.highlight { color: var(--neon-blue); }
+
+.nav-links { display: flex; gap: 30px; align-items: center; }
+
+.nav-links a:not(.btn-primary) {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-links a:not(.btn-primary):hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 8px var(--neon-pink);
+}
+
+/* =========================================
+   5. BOUTONS
+   ========================================= */
+/* Bouton "Download" coupé */
+.btn-primary {
+    background-color: var(--neon-blue);
+    color: #000;
+    padding: 10px 25px;
+    font-weight: 800;
+    text-transform: uppercase;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    box-shadow: 0 0 20px var(--neon-blue);
+    transform: translateY(-2px);
+}
+
+/* Bouton "Press Start" (Ghost) */
+.btn-arcade {
+    background: transparent;
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 15px 40px;
+    font-family: var(--font-headers);
+    font-size: 1rem; /* Plus gros */
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--neon-pink) inset;
+    transition: 0.3s;
+    margin-top: 20px;
+    animation: pulse 2s infinite; /* Il clignote doucement */
+}
+
+.btn-arcade:hover {
+    background: var(--neon-pink);
+    color: #fff;
+    box-shadow: 0 0 30px var(--neon-pink);
+}
+
+/* =========================================
+   6. HERO SECTION
+   ========================================= */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+    /* Petit dégradé radial pour faire "spotlight" */
+    background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-color) 70%);
+}
+
+.hero-content h1 {
+    font-family: var(--font-headers);
+    font-size: 3.5rem; /* Très gros */
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scroll-indicator {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   7. ANIMATIONS
+   ========================================= */
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px var(--neon-pink) inset; }
+    50% { box-shadow: 0 0 20px var(--neon-pink) inset, 0 0 10px var(--neon-pink); }
+    100% { box-shadow: 0 0 10px var(--neon-pink) inset; }
+}
+
+
+/* =========================================
+   SECTION SHOWCASE (GRID)
+   ========================================= */
+.section-padding {
+    padding: 80px 5%;
+    background-color: var(--bg-color); /* Fond uni */
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centre le bloc principal */
+}
+
+.section-title {
+    font-family: var(--font-headers);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #8892b0;
+    margin-bottom: 50px;
+}
+
+/* --- LA GRILLE MAGIC (CSS GRID) --- */
+.games-grid {
+    display: grid;
+    /* Astuce Pro : Ça crée autant de colonnes que possible, minimum 300px de large chacune */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Espace entre les cartes */
+}
+
+/* --- DESIGN DES CARTES (Style Street) --- */
+.game-card {
+    background: #161b22; /* Un peu plus clair que le fond */
+    border: 2px solid #30363d;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    border-color: var(--neon-blue); /* Bordure jaune au survol */
+    transform: translateY(-5px); /* La carte monte un peu */
+    box-shadow: 5px 5px 0px var(--neon-blue); /* Ombre "dure" rétro */
+}
+
+/* Visuel fictif (Dégradés pour remplacer les images) */
+.game-placeholder {
+    height: 180px;
+    width: 100%;
+}
+.p1 { background: linear-gradient(45deg, #ff0055, #5500ff); }
+.p2 { background: linear-gradient(45deg, #00ff99, #00ccff); }
+.p3 { background: linear-gradient(45deg, #ffcc00, #ff6600); }
+
+.badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border: 1px solid #fff;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-family: var(--font-headers);
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--neon-blue); /* Titre en jaune */
+}
+
+.card-content .dev {
+    font-size: 0.9rem;
+    color: #8892b0;
+    margin-bottom: 15px;
+}
+
+.card-content .desc {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn-card {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    padding: 10px;
+    cursor: pointer;
+    font-family: var(--font-text);
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-card:hover {
+    background: var(--neon-pink); /* Rouge au survol */
+    border-color: var(--neon-pink);
+    color: #fff;
+}
+
+/* =========================================
+   MODAL (POP-UP)
+   ========================================= */
+.modal-overlay {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Fond très sombre derrière */
+    backdrop-filter: blur(5px); /* Flou artistique */
+    z-index: 2000; /* Au dessus de tout (même des scanlines) */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 2px solid var(--neon-blue);
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    animation: slideDown 0.3s ease-out;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--neon-pink);
+}
+
+.modal-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.modal-header h2 {
+    font-family: var(--font-headers);
+    color: var(--neon-blue);
+    margin-bottom: 10px;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Petite animation d'ouverture */
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================
+   SECTION COMMUNAUTÉ
+   ========================================= */
+.section-dark {
+    padding: 80px 5%;
+    background-color: #080a0f; /* Un peu plus sombre que le fond principal */
+    border-top: 1px solid #333;
+}
+
+.community-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+    text-align: left;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-left: 3px solid var(--neon-blue); /* La touche couleur */
+    border-radius: 4px;
+}
+
+.quote {
+    font-style: italic;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: var(--neon-blue);
+}
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+}
+
+.discord-cta {
+    margin-top: 40px;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+    background-color: #020205; /* Presque noir */
+    padding: 60px 5% 20px;
+    border-top: 1px solid #222;
+    color: #8892b0;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-brand h3 {
+    font-family: var(--font-headers);
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-links h4, .footer-socials h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+    color: var(--neon-blue);
+    padding-left: 5px; /* Petit effet de glissement */
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #111;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   RESPONSIVE & MENU MOBILE
+   ========================================= */
+
+/* Par défaut (PC), on cache le hamburger */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* --- VERSION MOBILE (Écrans < 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. On affiche le hamburger */
+    .hamburger {
+        display: block;
+        z-index: 2001; /* Par dessus le menu ouvert */
+    }
+
+    /* 2. On cache les liens par défaut et on les stylise pour le mode "Ouvert" */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%; /* Plein écran */
+        background: rgba(5, 5, 16, 0.98); /* Fond très sombre */
+        flex-direction: column; /* Liste verticale */
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%); /* Caché à droite de l'écran */
+        transition: transform 0.4s ease-in-out;
+        z-index: 2000;
+    }
+
+    /* 3. La classe magique qu'on ajoutera en JS pour ouvrir le menu */
+    .nav-links.nav-active {
+        transform: translateX(0%); /* On le ramène au centre */
+    }
+
+    /* Style des liens en version mobile (plus gros) */
+    .nav-links li {
+        margin: 20px 0;
+        opacity: 0; /* Caché pour l'animation */
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* 4. Animation du Hamburger en croix (X) */
+    .toggle .span1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .toggle .span2 { opacity: 0; }
+    .toggle .span3 { transform: rotate(45deg) translate(-5px, -6px); }
+}
+
+/* Animation d'apparition des liens (Keyframes) */
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
