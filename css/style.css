@@ -467,11 +467,87 @@ footer {
     gap: 10px;
 }
 
+/* Petit ajustement pour les liens légaux en bas */
 .footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #111;
-    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.legal-links {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.legal-links a:hover {
+    color: var(--neon-blue);
+    text-decoration: underline;
+}
+
+.separator { margin: 0 5px; }
+
+/* =========================================
+   NEWSLETTER
+   ========================================= */
+.newsletter-section {
+    background: var(--neon-purple); /* On utilise le violet pour trancher */
+    padding: 40px 5%;
+    background: linear-gradient(90deg, #1a1a2e 0%, #2a1a4a 100%); /* Petit dégradé sombre */
+    border-top: 2px solid var(--neon-blue);
+    border-bottom: 2px solid var(--neon-blue);
+}
+
+.newsletter-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.newsletter-text h3 {
+    font-family: var(--font-headers);
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.newsletter-text p {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid #444;
+    color: #fff;
+    font-family: var(--font-text);
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+}
+
+/* Responsive : Empiler sur mobile */
+@media (max-width: 768px) {
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .newsletter-form {
+        width: 100%;
+        flex-direction: column;
+    }
 }
 
 /* =========================================
