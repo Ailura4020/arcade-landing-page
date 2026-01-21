@@ -136,7 +136,7 @@ ul { list-style: none; }
 }
 
 /* =========================================
-   6. HERO SECTION
+   6. HERO SECTION (Mise à jour Visuelle)
    ========================================= */
 .hero-section {
     height: 100vh;
@@ -146,13 +146,44 @@ ul { list-style: none; }
     text-align: center;
     padding-top: 80px;
     position: relative;
-    /* Petit dégradé radial pour faire "spotlight" */
-    background: radial-gradient(circle at center, #1a1a2e 0%, var(--bg-color) 70%);
+    overflow: hidden; /* Important : empêche l'image de dépasser si on zoome */
+    background-color: var(--bg-color); /* Couleur de secours */
+}
+
+/* NOUVEAU : L'image de fond (Chambre Gamer) */
+.hero-bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* C'est ici qu'on charge ton image ! */
+    background: url('../assets/images/hero-bg.jpg') no-repeat center center;
+    background-size: cover; /* L'image remplit tout l'écran */
+    z-index: 1;
+}
+
+/* NOUVEAU : L'Overlay (Le filtre sombre pour lire le texte) */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Dégradé intelligent : Clair au centre (tapis), Sombre sur les bords */
+    background: radial-gradient(
+        circle at center,
+        rgba(5, 5, 16, 0.3) 0%,   
+        rgba(5, 5, 16, 0.8) 90%
+    );
+    z-index: 2;
+}
+
+/* MISE À JOUR : Le contenu passe au-dessus des images */
+.hero-content {
+    position: relative;
+    z-index: 3; /* Très important : sinon le texte est caché par l'image */
 }
 
 .hero-content h1 {
     font-family: var(--font-headers);
-    font-size: 3.5rem; /* Très gros */
+    font-size: 3.5rem;
     line-height: 1.5;
     margin-bottom: 20px;
 }
@@ -164,6 +195,8 @@ ul { list-style: none; }
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    /* Petit fond noir semi-transparent pour aider la lecture si besoin */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 .scroll-indicator {
