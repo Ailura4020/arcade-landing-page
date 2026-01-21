@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PIXEL_FORGE - The Ultimate Indie Engine</title>
+    <meta name="description" content="Le template HTML/CSS ultra-léger pour les développeurs de jeux et créateurs d'outils. Design Rétro-Futuriste, 100% responsive.">
+    <meta name="author" content="Justine">
+
+    <meta property="og:title" content="PIXEL_FORGE - Create the Future">
+    <meta property="og:description" content="Découvrez le moteur open-source conçu pour les créateurs indépendants.">
+    <meta property="og:image" content="assets/images/preview-social.jpg"> <meta property="og:url" content="https://ton-site.com">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕹️</text></svg>">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <nav class="navbar">
+        <div class="logo">PIXEL_<span class="highlight">FORGE</span></div>
+        <ul class="nav-links">
+            <li><a href="#hero">Start</a></li>
+            <li><a href="#showcase">Games</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#" class="btn-primary">Download Engine</a></li>
+        </ul>
+        <div class="hamburger">
+    <span class="span1"></span>
+    <span class="span2"></span>
+    <span class="span3"></span>
+</div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content">
+            <h1 class="main-title">Insert Coin <span class="glitch" data-text="ONE">to Start</span> ?</h1>
+            <p class="hero-subtitle">Le moteur open-source pour les créateurs de mondes virtuels.</p>
+            
+            <div class="cta-group">
+                <button class="btn-arcade">PRESS START</button>
+                <div class="scroll-indicator">
+                    <span>v</span> Scroll to Play <span>v</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase" class="section-padding">
+    <div class="container">
+        <h2 class="section-title">Indie <span class="highlight">Legends</span></h2>
+        <p class="section-subtitle">Ils ont repoussé les limites avec Pixel_Forge.</p>
+
+     <div class="games-grid" id="games-container">
+    </div>
+                </div>
+    </div>
+</section>
+<section id="community" class="section-dark">
+    <div class="container">
+        <div class="community-content">
+            <h2 class="section-title">Join the <span class="highlight">Gang</span></h2>
+            <p class="section-subtitle">Déjà 500+ créateurs sur notre Discord.</p>
+            
+            <div class="testimonials-grid">
+                <article class="testimonial-card">
+                    <p class="quote">"Enfin un moteur qui ne demande pas 32Go de RAM. L'esprit Arcade est bien là."</p>
+                    <div class="author">
+                        <div class="avatar-circle"></div> <span>@PixelMaster_99</span>
+                    </div>
+                </article>
+
+                <article class="testimonial-card">
+                    <p class="quote">"Le code est propre, la doc est claire. J'ai porté mon jeu sur Switch en 1 semaine."</p>
+                    <div class="author">
+                        <div class="avatar-circle"></div>
+                        <span>@IndieDevSara</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="discord-cta">
+                <a href="#" class="btn-primary">Rejoindre le Discord</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="newsletter" class="newsletter-section">
+    <div class="container newsletter-content">
+        <div class="newsletter-text">
+            <h3>Restez dans la boucle</h3>
+            <p>Recevez les mises à jour du moteur et des assets gratuits chaque mois.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci ! (Simulation)');">
+            <input type="email" placeholder="votre@email.com" required>
+            <button type="submit" class="btn-primary">S'abonner</button>
+        </form>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            
+            <div class="footer-brand">
+                <h3>PIXEL_<span class="highlight">FORGE</span></h3>
+                <p>Le moteur conçu pour les créateurs indépendants. Open Source et gratuit pour toujours.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#hero">Start</a></li>
+                    <li><a href="#showcase">Jeux</a></li>
+                    <li><a href="#community">Communauté</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-socials">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="#">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Discord</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+    <p>&copy; 2026 PIXEL_FORGE. Template by <span class="highlight">Anonyme</span>.</p>
+    
+    <div class="legal-links">
+        <a href="#">Mentions Légales</a>
+        <span class="separator">|</span>
+        <a href="#">Confidentialité</a>
+        <span class="separator">|</span>
+        <a href="#">CGU</a>
+    </div>
+</div>
+    </div>
+</footer>
+<div id="game-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        
+        <div class="modal-header">
+            <h2 id="modal-title">Titre du Jeu</h2>
+            <span id="modal-tag" class="badge">TAG</span>
+        </div>
+
+        <div class="modal-body">
+            <p id="modal-desc">Description complète du jeu...</p>
+            
+            <div class="modal-actions">
+                <a id="btn-download" href="#" target="_blank" class="btn-primary">Télécharger</a>
+                <a id="btn-github" href="#" target="_blank" class="btn-arcade">Code Source</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="js/script.js"></script>
+</body>
+</html>
