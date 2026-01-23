@@ -50,15 +50,54 @@
     </div>
 </header>
 
-    <section id="showcase" class="section-padding">
+   <section id="showcase" class="section-padding">
     <div class="container">
         <h2 class="section-title">Indie <span class="highlight">Legends</span></h2>
         <p class="section-subtitle">Ils ont repoussé les limites avec Pixel_Forge.</p>
 
-     <div class="games-grid" id="games-container">
+        <div class="arcade-interface">
+            
+            <div class="game-list-panel">
+                <ul class="game-menu" id="games-list-root">
+                    </ul>
+            </div>
+
+            <div class="preview-panel">
+                <div class="screen-frame">
+                    <div class="screen-overlay"></div> 
+                    <div class="video-container">
+    <video id="preview-video" autoplay loop muted playsinline>
+        <source src="" type="video/webm">
+    </video>
+
+    <div id="no-video-msg" class="no-signal" style="display: none;">
+        <div class="loader-pixel"></div>
+        <p>PREVIEW COMING SOON</p>
+        <span class="sub-text">System update required</span>
     </div>
+</div>
                 </div>
-    </div>
+
+                <div class="game-info">
+                    <div class="info-header">
+                        <h3 id="preview-title">Select a Game</h3>
+                        <span id="preview-tech" class="tech-badge">Engine</span>
+                    </div>
+                    <p id="preview-desc">Survolez un jeu pour voir les détails...</p>
+                    <video id="preview-video" autoplay loop muted playsinline poster="">
+    <source src="" type="video/webm">
+</video>
+                    <div class="info-footer">
+                        <span id="preview-author" class="author">Creator</span>
+                        <button id="btn-details" class="btn-arcade">
+                            DETAILS
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
 </section>
 <section id="community" class="section-dark">
     <div class="container">
@@ -144,20 +183,36 @@
 </footer>
 <div id="game-modal" class="modal-overlay">
     <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        
+<span class="close-btn" onclick="closeModal()">&times;</span>        
         <div class="modal-header">
             <h2 id="modal-title">Titre du Jeu</h2>
             <span id="modal-tag" class="badge">TAG</span>
         </div>
 
-        <div class="modal-body">
-            <p id="modal-desc">Description complète du jeu...</p>
+        <div class="modal-grid-layout">
             
-            <div class="modal-actions">
-                <a id="btn-download" href="#" target="_blank" class="btn-primary">Télécharger</a>
-                <a id="btn-github" href="#" target="_blank" class="btn-arcade">Code Source</a>
+            <div class="modal-left-col">
+                <p id="modal-desc" class="story-text">Description complète...</p>
+                
+                <div class="specs-box">
+                    <h4>SYSTEM REQ.</h4>
+                    <ul id="modal-specs-list" class="specs-list">
+                        </ul>
+                </div>
+
+                <div class="modal-actions">
+                    <a id="btn-download" href="#" target="_blank" class="btn-primary">DOWNLOAD</a>
+                    <a id="btn-github" href="#" target="_blank" class="btn-arcade">SOURCE CODE</a>
+                </div>
             </div>
+
+            <div class="modal-right-col">
+                <div class="gallery-placeholder">
+                    <div class="scan-line-anim"></div>
+                    <span>SCREENSHOTS DATABASE<br>ACCESS DENIED</span>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
