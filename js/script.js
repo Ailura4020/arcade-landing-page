@@ -1,153 +1,218 @@
 /* =========================================
-   DATA : La liste des jeux (Le client modifie juste ça)
+   DATA : Liste des Jeux (Lore + Specs + Media)
    ========================================= */
 const gamesData = [
     {
-        title: "Cyber Brawler",
-        dev: "NeonStudio",
-        desc: "Un Beat'em up nerveux.",
-        // Les nouvelles infos pour la Pop-up :
-        fullDesc: "Explorez les bas-fonds de Neo-Tokyo dans ce jeu de combat inspiré des classiques 90s. Jouable jusqu'à 4 joueurs en local.",
+        title: "Neon Ronin: Overdrive",
+        dev: "Katana_Soft",
+        desc: "2084. Neo-Tokyo a sombré sous le joug des méga-corporations. Vous êtes le dernier Ronin du clan Digital Lotus. Armé de votre katana plasmique et de vos réflexes augmentés, tranchez votre chemin à travers les étages de la Tour Arasaka. Chaque coup compte, chaque erreur est fatale.",
+        // Le Lore complet
+        fullDesc: "2084. Neo-Tokyo a sombré sous le joug des méga-corporations. Vous êtes le dernier Ronin du clan Digital Lotus. Armé de votre katana plasmique et de vos réflexes augmentés, tranchez votre chemin à travers les étages de la Tour Arasaka. Chaque coup compte, chaque erreur est fatale.",
+        tech: "Unity 6 • C#",
+        video: "assets/videos/demo.mp4", 
+        poster: "assets/images/neon-cover.jpg",
         tag: "ACTION",
-        color: "linear-gradient(45deg, #ff0055, #5500ff)",
-        linkGithub: "https://github.com", // Le client met son lien ici
-        linkDownload: "https://itch.io"   // Et son lien de téléchargement là
+        linkGithub: "https://github.com/demo/neon",
+        linkDownload: "https://itch.io/demo/neon",
+        // NOUVEAU : Les Specs Techniques
+        specs: {
+            os: "Windows 98/XP",
+            cpu: "Pentium III 500MHz",
+            ram: "128MB",
+            gpu: "Voodoo 3 3000"
+        },
+        // NOUVEAU : Galerie d'images (Placeholders)
+        screens: ["assets/images/s1.jpg", "assets/images/s2.jpg"]
     },
     {
-        title: "Pixel Quest",
-        dev: "DevLoic",
-        desc: "L'aventure old-school.",
-        fullDesc: "Un RPG tour par tour avec plus de 50 heures de jeu. Moteur optimisé pour les sprites 2D haute définition.",
-        tag: "RPG",
-        color: "linear-gradient(45deg, #00ff99, #00ccff)",
+        title: "Void Scavenger",
+        dev: "DeepSpace_Dev",
+        desc: "Survival horror in zero-g.",
+        fullDesc: "Le signal de détresse provenait du cargo USG Ishimura, perdu depuis 20 ans. Vous êtes monté à bord pour récupérer la cargaison, mais vous avez trouvé... autre chose. L'oxygène baisse. Les couloirs changent de forme. Et dans l'ombre des conduits, quelque chose respire.",
+        tech: "Unreal Engine 5",
+        video: "assets/videos/demo2.mp4",
+        poster: "",
+        tag: "HORROR",
         linkGithub: "https://github.com",
-        linkDownload: null // S'il n'y a pas de lien, on met null (le bouton ne s'affichera pas)
+        linkDownload: null,
+        specs: {
+            os: "Windows 10",
+            cpu: "Intel i5",
+            ram: "8GB",
+            gpu: "GTX 1060"
+        },
+        screens: []
     },
     {
-        title: "Street Racer Galactic",
-        dev: "Ailura",
-        desc: "Racing futuriste intense.",
-        fullDesc: "Plongez dans des courses anti-gravité à travers des paysages urbains futuristes. Personnalisez vos véhicules et défiez vos amis en ligne.",
+        title: "Hyper Drift GT",
+        dev: "Turbo_Team",
+        desc: "90s Arcade Racing Vibes.",
+        fullDesc: "Oubliez les freins. Ici, tout se joue dans la courbe. Plongez dans l'esthétique Vaporwave ultime avec des courses illégales sur les autoroutes infinies du Cyber-Net. Personnalisez votre bolide rétro, montez le volume de la Synthwave, et devenez le Roi de la Glisse.",
+        tech: "Godot 4 • GDScript",
+        video: "assets/videos/demo3.mp4",
+        poster: "",
         tag: "RACING",
-        color: "linear-gradient(45deg, #00ff99, #00ccff)",
         linkGithub: "https://github.com",
-        linkDownload: null // S'il n'y a pas de lien, on met null (le bouton ne s'affichera pas)
+        linkDownload: "https://steam.com",
+        specs: {
+            os: "Windows XP",
+            cpu: "Potato",
+            ram: "512MB",
+            gpu: "Nvidia Riva TNT2"
+        },
+        screens: []
     },
-    // ... tes autres jeux
+    {
+        title: "Aether Chronicles",
+        dev: "FantasyForge",
+        desc: "16-bit JRPG masterpiece.",
+        fullDesc: "Le monde d'Aether se meurt. Incarnez une jeune mécanicienne découvrant une technologie ancienne capable de sauver ce qui reste de l'humanité. Un voyage émotionnel, des combats au tour par tour stratégiques et une direction artistique 16-bits à couper le souffle.",
+        tech: "RPG Maker MZ",
+        video: "assets/videos/demo4.mp4",
+        poster: "",
+        tag: "RPG",
+        linkGithub: null, 
+        linkDownload: "https://itch.io",
+        specs: {
+            os: "Any",
+            cpu: "Low Spec",
+            ram: "2GB",
+            gpu: "Integrated"
+        },
+        screens: []
+    },
+    {
+        title: "Glitch Protocol",
+        dev: "Logic_Bytes",
+        desc: "Hack the game to win.",
+        fullDesc: "VOUS N'ÊTES PAS LE JOUEUR. VOUS ÊTES L'ANOMALIE. Ce jeu refuse d'être fini. Pour progresser, vous devrez ouvrir la console de commande, réécrire le code en temps réel et exploiter les bugs du moteur physique. Brisez le quatrième mur.",
+        tech: "Custom C++ Engine",
+        video: "", 
+        poster: "", 
+        tag: "PUZZLE",
+        linkGithub: "https://github.com",
+        linkDownload: "https://itch.io",
+        specs: {
+            os: "Linux / Win",
+            cpu: "Dual Core",
+            ram: "4GB",
+            gpu: "Basic"
+        },
+        screens: []
+    }
 ];
 
 /* =========================================
-   LOGIC : Génération automatique des cartes
+   LOGIC : Arcade Core
    ========================================= */
-/* ... (Après ton tableau gamesData) ... */
+const listContainer = document.getElementById('games-list-root');
+const previewTitle = document.getElementById('preview-title');
+const previewTech = document.getElementById('preview-tech');
+const previewDesc = document.getElementById('preview-desc');
+const previewAuthor = document.getElementById('preview-author');
+const btnDetails = document.getElementById('btn-details');
 
-const container = document.getElementById('games-container');
-const modal = document.getElementById('game-modal');
+let activeGameIndex = 0; 
 
-// 1. GÉNÉRATION DES CARTES
+// 1. CHARGEMENT LISTE
 function loadGames() {
-    container.innerHTML = '';
+    if (!listContainer) return; 
+    listContainer.innerHTML = '';
     
-    // index est le numéro du jeu dans la liste (0, 1, 2...)
     gamesData.forEach((game, index) => {
-        const cardHTML = `
-            <article class="game-card">
-                <div class="card-visual" style="background: ${game.color}; height: 180px; position: relative;">
-                    <span class="badge">${game.tag}</span>
-                </div>
-                <div class="card-content">
-                    <h3>${game.title}</h3>
-                    <p class="dev">by <span class="dev-name">${game.dev}</span></p>
-                    <p class="desc">${game.desc}</p>
-                    <button class="btn-card" onclick="openModal(${index})">Voir la fiche</button>
-                </div>
-            </article>
-        `;
-        container.innerHTML += cardHTML;
+        const li = document.createElement('li');
+        li.className = 'game-item';
+        li.innerHTML = `<span class="arrow">></span> ${game.title}`;
+        
+        li.addEventListener('mouseover', () => updatePreview(index));
+        li.addEventListener('click', () => updatePreview(index));
+
+        listContainer.appendChild(li);
     });
+
+    if (gamesData.length > 0) updatePreview(0);
 }
 
-// 2. OUVRIR LA MODALE
-function openModal(index) {
-    const game = gamesData[index]; // On récupère les infos du jeu cliqué
+// 2. UPDATE PREVIEW
+function updatePreview(index) {
+    const game = gamesData[index];
+    activeGameIndex = index;
+
+    document.querySelectorAll('.game-item').forEach(item => item.classList.remove('active'));
+    if(listContainer.children[index]) listContainer.children[index].classList.add('active');
+
+    previewTitle.innerText = game.title;
+    previewTech.innerText = game.tech;
+    previewDesc.innerText = game.desc;
+    previewAuthor.innerText = `By ${game.dev}`;
     
-    // On remplit le HTML de la modale avec les infos
+    // Video / Poster Logic
+    const videoElement = document.getElementById('preview-video');
+    const noSignalElement = document.getElementById('no-video-msg');
+    
+    videoElement.src = "";
+    videoElement.poster = "";
+
+    if(game.video && game.video.trim() !== "") {
+        noSignalElement.style.display = 'none';
+        videoElement.style.display = 'block';
+        if(game.poster) videoElement.poster = game.poster;
+        videoElement.src = game.video;
+        videoElement.load();
+        var p = videoElement.play();
+        if (p !== undefined) p.catch(_ => {});
+    } else {
+        videoElement.style.display = 'none';
+        noSignalElement.style.display = 'flex';
+    }
+
+    if(btnDetails) btnDetails.onclick = () => openModal(activeGameIndex);
+}
+
+// 3. OPEN MODAL (VERSION PRO)
+const modal = document.getElementById('game-modal');
+
+function openModal(index) {
+    if(!modal) return;
+    const game = gamesData[index];
+    
+    // Infos de base
     document.getElementById('modal-title').innerText = game.title;
     document.getElementById('modal-tag').innerText = game.tag;
     document.getElementById('modal-desc').innerText = game.fullDesc;
     
-    // GESTION DES BOUTONS (On les cache s'il n'y a pas de lien)
+    // Injection des Specs Techniques (Nouveau)
+    const specsContainer = document.getElementById('modal-specs-list');
+    if(specsContainer && game.specs) {
+        specsContainer.innerHTML = `
+            <li><span>OS:</span> ${game.specs.os}</li>
+            <li><span>CPU:</span> ${game.specs.cpu}</li>
+            <li><span>RAM:</span> ${game.specs.ram}</li>
+            <li><span>GPU:</span> ${game.specs.gpu}</li>
+        `;
+    }
+
+    // Gestion Boutons
     const btnDownload = document.getElementById('btn-download');
     const btnGithub = document.getElementById('btn-github');
 
-    // Téléchargement
-    if(game.linkDownload) {
-        btnDownload.style.display = 'inline-block';
-        btnDownload.href = game.linkDownload;
-    } else {
-        btnDownload.style.display = 'none'; // Pas de lien = bouton caché
-    }
+    game.linkDownload ? (btnDownload.style.display = 'inline-block', btnDownload.href = game.linkDownload) : btnDownload.style.display = 'none';
+    game.linkGithub ? (btnGithub.style.display = 'inline-block', btnGithub.href = game.linkGithub) : btnGithub.style.display = 'none';
 
-    // Github
-    if(game.linkGithub) {
-        btnGithub.style.display = 'inline-block';
-        btnGithub.href = game.linkGithub;
-    } else {
-        btnGithub.style.display = 'none';
-    }
-
-    // On affiche la boîte
     modal.style.display = 'flex';
 }
 
-// 3. FERMER LA MODALE
-function closeModal() {
-    modal.style.display = 'none';
-}
+function closeModal() { if(modal) modal.style.display = 'none'; }
+window.onclick = function(e) { if (e.target == modal) closeModal(); }
 
-// Fermer si on clique en dehors de la boîte (sur le fond sombre)
-window.onclick = function(event) {
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-// Lancement
-document.addEventListener('DOMContentLoaded', loadGames);
-
-
-/* =========================================
-   MENU MOBILE
-   ========================================= */
+// 4. MENU MOBILE
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
-const links = document.querySelectorAll('.nav-links li');
-
-// Quand on clique sur le hamburger
-hamburger.addEventListener('click', () => {
-    // 1. On bascule la classe 'nav-active' pour faire glisser le menu
-    navLinks.classList.toggle('nav-active');
-    
-    // 2. On transforme le hamburger en croix
-    hamburger.classList.toggle('toggle');
-
-    // 3. Animation des liens (chacun arrive avec un petit délai)
-    links.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            // Le délai dépend de l'index (0.1s, 0.2s, etc.)
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-        }
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        hamburger.classList.toggle('toggle');
     });
-});
+}
 
-// Quand on clique sur un lien, on ferme le menu (UX)
-links.forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-        // On reset l'animation
-        links.forEach(l => l.style.animation = '');
-    });
-});
+document.addEventListener('DOMContentLoaded', loadGames);
