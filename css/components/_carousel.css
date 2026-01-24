@@ -195,3 +195,43 @@
     font-size: 1.8rem;
     margin-top: 10px;
 }
+/* --- EFFET BALAYAGE (DISPERSION) --- */
+/* Quand le carrousel est en mode "Focus", on cache les items non actifs */
+
+.carousel-stage.focus-mode .carousel-item:not(.is-center) {
+    opacity: 0 !important;
+    transform: scale(0) !important; /* Ils rétrécissent et disparaissent */
+    transition: all 0.5s ease;
+}
+
+/* L'item central (celui cliqué) reste, mais on peut le cacher un poil après
+   pour laisser la modale prendre le relais visuellement */
+.carousel-stage.focus-mode .carousel-item.is-center {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.3s; /* Petit délai */
+}
+/* =========================================
+   EFFET DISPERSION (FOCUS MODE)
+   ========================================= */
+
+/* 1. LES JEUX À GAUCHE : Ils partent loin vers la gauche */
+.carousel-stage.focus-mode .carousel-item.is-left,
+.carousel-stage.focus-mode .carousel-item.is-hidden-left {
+    transform: translateX(-150vw) rotateY(45deg) scale(0.5) !important;
+    opacity: 0;
+    transition: all 0.6s ease-in; /* Accélération */
+}
+
+/* 2. LES JEUX À DROITE : Ils partent loin vers la droite */
+.carousel-stage.focus-mode .carousel-item.is-right,
+.carousel-stage.focus-mode .carousel-item.is-hidden-right {
+    transform: translateX(150vw) rotateY(-45deg) scale(0.5) !important;
+    opacity: 0;
+    transition: all 0.6s ease-in;
+}
+
+/* 3. LE JEU CENTRAL : Il disparaît instantanément pour laisser place à la Modale */
+.carousel-stage.focus-mode .carousel-item.is-center {
+    opacity: 0;
+    transition: opacity 0.1s; /* Très rapide */
+}
