@@ -124,7 +124,65 @@ ul { list-style: none; }
 .container { max-width: 1200px; margin: 0 auto; }
 .section-title { font-family: var(--font-headers); font-size: 2rem; text-align: center; margin-bottom: 10px; text-transform: uppercase; color: #fff; }
 .section-subtitle { text-align: center; color: #8892b0; margin-bottom: 50px; }
+/* =========================================
+   5. MODIFICATIONS HERO & TRANSITIONS
+   ========================================= */
 
+/* A. LE FONDU MAGIQUE (BLEND V2 - CORRIGÉ) */
+.hero-section::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; 
+    height: 400px; /* On augmente la taille (était 300px) */
+    
+    /* Dégradé plus agressif qui va vers la couleur exacte du fond (--bg-color) */
+    background: linear-gradient(to bottom, 
+        rgba(13, 17, 23, 0) 0%,      /* Transparent au début */
+        rgba(13, 17, 23, 0.8) 70%,   /* Devient sombre assez vite */
+        #0d1117 100%                 /* Finit par la couleur exacte du fond du site */
+    );
+    
+    z-index: 4; 
+    pointer-events: none;
+}
+
+/* B. INDICATEUR DE SCROLL "GO" (Style Streets of Rage) */
+.scroll-indicator {
+    position: absolute; bottom: 100px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    animation: bounce 1s infinite;
+    cursor: pointer;
+}
+
+.go-text {
+    display: block;
+    font-family: var(--font-headers); font-size: 1.2rem;
+    color: var(--neon-blue);
+    text-shadow: 2px 2px 0px #000;
+    font-weight: bold;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    animation: flash 0.5s infinite alternate; /* Clignotement rapide */
+}
+
+.arrow {
+    font-size: 1.5rem; color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
 /* =========================================
    4. COMMUNITY & FOOTER (STYLES)
    ========================================= */

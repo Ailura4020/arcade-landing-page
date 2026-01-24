@@ -1,6 +1,28 @@
 /* =========================================
-   COMPOSANT : CAROUSEL 3D COMPACT (SPLIT DESIGN)
+   COMPOSANT : CAROUSEL 3D COMPACT (STRUCTURE CORRIGÉE)
    ========================================= */
+
+/* 1. CONTENEUR GLOBAL (Titre + Jeux) */
+#games-section {
+    /* C'est ICI qu'on règle le scroll pour que le titre ne soit pas caché */
+    scroll-margin-top: 80px; 
+    
+    /* Layout */
+    width: 100%;
+    min-height: 100vh; /* Prend tout l'écran */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+/* 2. LE CARROUSEL LUI-MÊME */
+#showcase {
+    width: 100%;
+    /* Le JS injecte les items ici */
+}
 
 /* BACKGROUND DYNAMIQUE */
 .dynamic-background {
@@ -11,8 +33,8 @@
 .dynamic-background::after {
     content: ''; 
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Laisse passer 60% de la lumière */
-    backdrop-filter: blur(2px);      /* Flou minimaliste */
+    background: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(2px);
 }
 .bg-media {
     width: 100%; height: 100%; object-fit: cover;
@@ -23,7 +45,7 @@
 
 /* SCENE GLOBALE */
 .carousel-stage {
-    position: relative; width: 100%; height: 500px; /* Moins haut */
+    position: relative; width: 100%; height: 500px;
     display: flex; flex-direction: column; justify-content: center;
     perspective: 1000px; overflow: hidden;
 }
@@ -36,7 +58,6 @@
 /* --- L'ITEM (BOITE DE JEU) --- */
 .carousel-item {
     position: absolute;
-    /* TAILLE RÉDUITE POUR RENTRER DANS L'ECRAN */
     width: 240px; height: 340px; 
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
@@ -52,7 +73,7 @@
 
 .box-face { position: absolute; backface-visibility: hidden; border-radius: 4px; }
 
-/* --- FACE AVANT (SPLIT DESIGN) --- */
+/* --- FACE AVANT --- */
 .face-front {
     width: 100%; height: 100%;
     background: #111; border: 2px solid #333;
@@ -60,24 +81,23 @@
     overflow: hidden;
 }
 
-/* 1. HAUT (70%) : IMAGE */
+/* HAUT (70%) : IMAGE */
 .box-poster {
-    flex: 7; /* On passe de 6 à 7 */
+    flex: 7;
     position: relative; overflow: hidden;
     border-bottom: 2px solid var(--neon-blue);
 }
 .cover-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* 2. BAS (30%) : INTERFACE */
+/* BAS (30%) : INTERFACE */
 .box-interface {
-    flex: 3; /* On passe de 4 à 3 */
-    background: #080808; padding: 12px; /* Un peu moins de padding */
+    flex: 3;
+    background: #080808; padding: 12px;
     display: flex; flex-direction: column; justify-content: space-between;
     background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
     background-size: 20px 20px;
 }
 
-/* Contenu Interface */
 .info-row { text-align: center; }
 .game-title { 
     font-family: var(--font-headers); font-size: 0.9rem; color: #fff; 
@@ -112,35 +132,28 @@
 }
 
 /* --- ETATS (POSITIONS) --- */
-/* CENTRE */
 .carousel-item.is-center {
-    transform: translateX(0) scale(1) translateZ(100px); /* Scale 1 = Taille normale définie plus haut */
+    transform: translateX(0) scale(1) translateZ(100px);
     z-index: 100; opacity: 1;
 }
 .carousel-item.is-center .sega-box-3d {
     border: 2px solid var(--neon-blue);
-    box-shadow: 0 0 30px var(--neon-blue); /* Glow actif */
+    box-shadow: 0 0 30px var(--neon-blue);
 }
 
-/* GAUCHE / DROITE (Visibles) */
 .carousel-item.is-left {
     transform: translateX(-280px) scale(0.85) rotateY(20deg);
-    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5);
-    cursor: pointer;
+    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5); cursor: pointer;
 }
 .carousel-item.is-right {
     transform: translateX(280px) scale(0.85) rotateY(-20deg);
-    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5);
-    cursor: pointer;
+    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5); cursor: pointer;
 }
-
-/* Survol des items inactifs */
 .carousel-item.is-left:hover, .carousel-item.is-right:hover {
     opacity: 1; filter: grayscale(0%); transform: translateX(-280px) scale(0.9) rotateY(10deg);
 }
 .carousel-item.is-right:hover { transform: translateX(280px) scale(0.9) rotateY(-10deg); }
 
-/* CACHÉS */
 .carousel-item.is-hidden-left { transform: translateX(-600px) scale(0.5); opacity: 0; pointer-events: none; }
 .carousel-item.is-hidden-right { transform: translateX(600px) scale(0.5); opacity: 0; pointer-events: none; }
 
@@ -158,3 +171,27 @@
 .carousel-indicators { display: flex; gap: 8px; align-items: center; }
 .indicator-dot { width: 6px; height: 6px; background: #555; border-radius: 50%; cursor: pointer; transition: 0.3s; }
 .indicator-dot.active { background: var(--neon-blue); box-shadow: 0 0 5px var(--neon-blue); transform: scale(1.5); }
+
+
+/* LE TITRE ARCADE */
+.arcade-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    /* On a retiré le margin-top excessif car le centrage se fait via le parent #games-section */
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+    text-shadow: 4px 4px 0px #000;
+    line-height: 1.5;
+}
+
+.arcade-title .highlight {
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px var(--neon-pink);
+    display: block;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
