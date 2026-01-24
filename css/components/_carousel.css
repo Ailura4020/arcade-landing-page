@@ -1,0 +1,160 @@
+/* =========================================
+   COMPOSANT : CAROUSEL 3D COMPACT (SPLIT DESIGN)
+   ========================================= */
+
+/* BACKGROUND DYNAMIQUE */
+.dynamic-background {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1; overflow: hidden;
+    background: #050505;
+}
+.dynamic-background::after {
+    content: ''; 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Laisse passer 60% de la lumière */
+    backdrop-filter: blur(2px);      /* Flou minimaliste */
+}
+.bg-media {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; animation: fadeInBg 1s forwards; transform: scale(1.1);
+}
+@keyframes fadeInBg { to { opacity: 0.6; transform: scale(1); } }
+
+
+/* SCENE GLOBALE */
+.carousel-stage {
+    position: relative; width: 100%; height: 500px; /* Moins haut */
+    display: flex; flex-direction: column; justify-content: center;
+    perspective: 1000px; overflow: hidden;
+}
+.carousel-track {
+    position: relative; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* --- L'ITEM (BOITE DE JEU) --- */
+.carousel-item {
+    position: absolute;
+    /* TAILLE RÉDUITE POUR RENTRER DANS L'ECRAN */
+    width: 240px; height: 340px; 
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+}
+
+/* LA BOITE 3D */
+.sega-box-3d {
+    width: 100%; height: 100%; position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transition: box-shadow 0.3s;
+}
+
+.box-face { position: absolute; backface-visibility: hidden; border-radius: 4px; }
+
+/* --- FACE AVANT (SPLIT DESIGN) --- */
+.face-front {
+    width: 100%; height: 100%;
+    background: #111; border: 2px solid #333;
+    display: flex; flex-direction: column; 
+    overflow: hidden;
+}
+
+/* 1. HAUT (70%) : IMAGE */
+.box-poster {
+    flex: 7; /* On passe de 6 à 7 */
+    position: relative; overflow: hidden;
+    border-bottom: 2px solid var(--neon-blue);
+}
+.cover-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 2. BAS (30%) : INTERFACE */
+.box-interface {
+    flex: 3; /* On passe de 4 à 3 */
+    background: #080808; padding: 12px; /* Un peu moins de padding */
+    display: flex; flex-direction: column; justify-content: space-between;
+    background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Contenu Interface */
+.info-row { text-align: center; }
+.game-title { 
+    font-family: var(--font-headers); font-size: 0.9rem; color: #fff; 
+    margin-bottom: 5px; text-transform: uppercase; line-height: 1.2;
+}
+.game-meta { font-size: 0.65rem; color: #666; font-family: monospace; display: block; }
+
+.action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+.tag-badge { 
+    font-size: 0.6rem; color: var(--neon-purple); border: 1px solid var(--neon-purple); 
+    padding: 2px 6px; border-radius: 4px; text-transform: uppercase;
+}
+
+.btn-start {
+    background: var(--neon-pink); border: none; padding: 6px 15px;
+    color: #fff; font-family: var(--font-headers); font-size: 0.7rem; cursor: pointer;
+    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+    transition: 0.2s;
+}
+.btn-start:hover { background: #fff; color: var(--neon-pink); transform: scale(1.05); }
+
+
+/* --- AUTRES FACES 3D --- */
+.face-side {
+    right: 0; width: 30px; height: 100%; background: #050505;
+    transform: rotateY(90deg) translateZ(15px) translateX(15px);
+    border-right: 1px solid #333;
+}
+.face-top {
+    top: 0; width: 100%; height: 30px; background: #151515;
+    transform: rotateX(90deg) translateZ(15px) translateY(-15px);
+}
+
+/* --- ETATS (POSITIONS) --- */
+/* CENTRE */
+.carousel-item.is-center {
+    transform: translateX(0) scale(1) translateZ(100px); /* Scale 1 = Taille normale définie plus haut */
+    z-index: 100; opacity: 1;
+}
+.carousel-item.is-center .sega-box-3d {
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 30px var(--neon-blue); /* Glow actif */
+}
+
+/* GAUCHE / DROITE (Visibles) */
+.carousel-item.is-left {
+    transform: translateX(-280px) scale(0.85) rotateY(20deg);
+    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5);
+    cursor: pointer;
+}
+.carousel-item.is-right {
+    transform: translateX(280px) scale(0.85) rotateY(-20deg);
+    z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5);
+    cursor: pointer;
+}
+
+/* Survol des items inactifs */
+.carousel-item.is-left:hover, .carousel-item.is-right:hover {
+    opacity: 1; filter: grayscale(0%); transform: translateX(-280px) scale(0.9) rotateY(10deg);
+}
+.carousel-item.is-right:hover { transform: translateX(280px) scale(0.9) rotateY(-10deg); }
+
+/* CACHÉS */
+.carousel-item.is-hidden-left { transform: translateX(-600px) scale(0.5); opacity: 0; pointer-events: none; }
+.carousel-item.is-hidden-right { transform: translateX(600px) scale(0.5); opacity: 0; pointer-events: none; }
+
+
+/* UI NAVIGATION */
+.carousel-controls {
+    position: absolute; bottom: 20px; width: 100%;
+    display: flex; justify-content: center; gap: 20px; z-index: 200;
+}
+.nav-btn {
+    background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: 0.3s;
+}
+.nav-btn:hover { background: var(--neon-blue); border-color: var(--neon-blue); color: #000; }
+.carousel-indicators { display: flex; gap: 8px; align-items: center; }
+.indicator-dot { width: 6px; height: 6px; background: #555; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+.indicator-dot.active { background: var(--neon-blue); box-shadow: 0 0 5px var(--neon-blue); transform: scale(1.5); }
