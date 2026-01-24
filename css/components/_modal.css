@@ -242,3 +242,44 @@
     .box-right-panel { border-left: 2px solid #222; border-radius: 6px; margin-top: 20px; }
     .close-cross { top: 10px; right: 10px; }
 }
+
+/* --- BOUTONS SOCIAUX (DANS LE FOOTER DU MANUEL) --- */
+
+/* Le conteneur (Footer) */
+.manual-footer {
+    margin-top: auto; 
+    padding-top: 15px; border-top: 1px dashed #999; /* Ligne pointillée comme un ticket */
+    display: flex; justify-content: center; gap: 15px;
+    min-height: 40px; align-items: center;
+}
+
+/* Le style du bouton "Lien" */
+.social-link-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #333;
+    color: #333;
+    font-family: var(--font-headers); /* Police Pixel */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.5);
+    transform: rotate(-2deg); /* Un peu penché comme un tampon mal mis */
+}
+
+/* Chaque 2ème bouton penche de l'autre côté pour le réalisme */
+.social-link-btn:nth-child(even) { transform: rotate(2deg); }
+
+/* Au survol */
+.social-link-btn:hover {
+    background: #111;
+    color: #fff;
+    transform: scale(1.1) rotate(0deg); /* Se redresse */
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+/* Couleurs spécifiques (Optionnel, pour faire joli) */
+.social-link-btn.github:hover { border-color: #6e5494; background: #6e5494; }
+.social-link-btn.itch:hover { border-color: #fa5c5c; background: #fa5c5c; }
+.social-link-btn.web:hover { border-color: var(--neon-blue); background: var(--neon-blue); color: #000; }

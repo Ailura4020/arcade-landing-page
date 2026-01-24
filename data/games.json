@@ -7,7 +7,12 @@
         "tag": "ACTION",
         "dev": "KATANA_SOFT",
         "year": "2026",
-        "description": "Un beat-them-up cyberpunk dans un Neo-Tokyo dévasté."
+        "description": "Un beat-them-up cyberpunk dans un Neo-Tokyo dévasté.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
     },
     {
         "id": 2,
@@ -17,7 +22,12 @@
         "tag": "HORROR",
         "dev": "DEEPSPACE_DEV",
         "year": "2025",
-        "description": "Survivrez-vous au silence de l'espace ?"
+        "description": "Survivrez-vous au silence de l'espace ?",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
     },
     {
         "id": 3,
@@ -27,7 +37,12 @@
         "tag": "RACING",
         "dev": "TURBO_TEAM",
         "year": "2026",
-        "description": "La course arcade ultime à 300km/h."
+        "description": "La course arcade ultime à 300km/h.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
     },
     {
         "id": 4,
@@ -37,7 +52,12 @@
         "tag": "ADVENTURE",
         "dev": "CORE_DESIGN",
         "year": "1996",
-        "description": "L'aventure originale qui a tout commencé."
+        "description": "L'aventure originale qui a tout commencé.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
     },
     {
         "id": 5,
@@ -47,6 +67,11 @@
         "tag": "PLATFORM",
         "dev": "SEGA_TEAM",
         "year": "1991",
-        "description": "Gotta go fast!"
+        "description": "Gotta go fast!",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
     }
 ]

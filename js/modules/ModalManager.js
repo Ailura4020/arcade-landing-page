@@ -111,6 +111,27 @@ export const ModalManager = {
         }
 
         this.overlay.classList.add('active');
+        this.overlay.querySelector('#m-tag').textContent = game.tag;
+
+// --- GESTION DES LIENS SOCIAUX ---
+const socialContainer = this.overlay.querySelector('.manual-footer');
+// On vide le footer (on enlève le texte "PIXEL_FORGE SYSTEM..." par défaut)
+socialContainer.innerHTML = ''; 
+
+if (game.links) {
+    // Si on a des liens, on crée des boutons
+    Object.entries(game.links).forEach(([key, url]) => {
+        const linkBtn = document.createElement('a');
+        linkBtn.href = url;
+        linkBtn.target = "_blank"; // Ouvrir dans un nouvel onglet
+        linkBtn.className = `social-link-btn ${key}`; // ex: social-link-btn github
+        linkBtn.textContent = key.toUpperCase(); // GITHUB, WEB...
+        socialContainer.appendChild(linkBtn);
+    });
+} else {
+    // Si pas de lien, on remet le texte par défaut
+    socialContainer.textContent = "PIXEL_FORGE ENTERTAINMENT SYSTEM";
+}
     },
 
     close() {
