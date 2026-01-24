@@ -1,0 +1,115 @@
+/* =========================================
+   COMPOSANT : HERO SECTION (L'ACCUEIL)
+   ========================================= */
+
+/* 1. CONTENEUR PRINCIPAL */
+.hero-section {
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    padding-top: 80px; 
+    position: relative; 
+    overflow: hidden; 
+    background-color: var(--bg-color);
+}
+
+/* 2. IMAGE DE FOND & OVERLAY */
+.hero-bg-image {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    /* Note : Assure-toi que le chemin est correct depuis le dossier CSS */
+    background: url('../../assets/images/hero-bg.jpg') no-repeat center center; 
+    background-size: cover; 
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(5, 5, 16, 0.3) 0%, rgba(5, 5, 16, 0.8) 90%); 
+    z-index: 2;
+}
+
+/* 3. LE FONDU MAGIQUE (BLEND) VERS LE BAS */
+.hero-section::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; 
+    height: 400px; /* Grande zone de fondu */
+    
+    /* Dégradé vers la couleur du fond du site pour une transition invisible */
+    background: linear-gradient(to bottom, 
+        rgba(13, 17, 23, 0) 0%,      
+        rgba(13, 17, 23, 0.8) 70%,   
+        #0d1117 100%                 
+    );
+    
+    z-index: 4; 
+    pointer-events: none;
+}
+
+/* 4. CONTENU TEXTE (TITRE) */
+.hero-content { position: relative; z-index: 3; }
+
+.hero-content h1 { 
+    font-family: var(--font-headers); 
+    font-size: 3.5rem; 
+    line-height: 1.5; 
+    margin-bottom: 20px; 
+}
+
+.hero-subtitle { 
+    font-size: 1.5rem; 
+    color: var(--neon-blue); 
+    margin-bottom: 40px; 
+    max-width: 700px; 
+    margin-left: auto; margin-right: auto; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+}
+
+/* Effet Glitch sur le texte (Optionnel) */
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px var(--neon-pink) inset; }
+    50% { box-shadow: 0 0 20px var(--neon-pink) inset, 0 0 10px var(--neon-pink); }
+    100% { box-shadow: 0 0 10px var(--neon-pink) inset; }
+}
+
+/* 5. INDICATEUR DE SCROLL "GO" */
+.scroll-indicator {
+    position: absolute; 
+    bottom: 100px; /* Position remontée pour être visible */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    animation: bounce 1s infinite;
+    cursor: pointer;
+}
+
+.go-text {
+    display: block;
+    font-family: var(--font-headers); font-size: 1.2rem;
+    color: var(--neon-blue);
+    text-shadow: 2px 2px 0px #000;
+    font-weight: bold;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    animation: flash 0.5s infinite alternate; 
+}
+
+.arrow {
+    font-size: 1.5rem; color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+/* Animations Scroll */
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
