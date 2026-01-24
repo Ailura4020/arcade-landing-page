@@ -50,7 +50,7 @@ export function initCarousel(gamesData) {
                         </div>
                         <div class="action-row">
                             <span class="tag-badge">${game.tag}</span>
-                            <button class="btn-start">START</button>
+                            <button class="btn-start">DETAILS</button>
                         </div>
                     </div>
 

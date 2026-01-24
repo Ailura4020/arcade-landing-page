@@ -78,32 +78,85 @@
     box-shadow: inset -15px 0 25px rgba(0,0,0,0.8);
 }
 
-/* Le Manuel "Papier" posé dedans */
 .manual-paper-effect {
-    background: #e0e0e0; /* Papier légèrement grisé */
-    color: #111;
-    padding: 20px;
+    background: #e6e6e6; /* Gris très clair */
+    color: #222;
+    padding: 25px;
     height: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     border-radius: 2px;
     overflow-y: auto;
+    font-family: 'Rajdhani', sans-serif;
+    display: flex; flex-direction: column;
+    
+    /* Motif de fond subtil (quadrillage technique) */
+    background-image: 
+        linear-gradient(#ccc 1px, transparent 1px),
+        linear-gradient(90deg, #ccc 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
-/* Design du contenu du manuel (adapté au fond clair) */
-.manual-header { 
-    border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; 
-    display: flex; justify-content: space-between; align-items: flex-end;
+/* 1. EN-TÊTE */
+.manual-header {
+    border-bottom: 3px solid #111;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
-.manual-title { 
-    font-family: var(--font-headers); font-size: 1.4rem; text-transform: uppercase; 
-    color: #000; line-height: 1.1; max-width: 70%;
+.header-top {
+    display: flex; justify-content: space-between; margin-bottom: 5px;
+    font-family: monospace; font-size: 0.7rem; color: #555;
+    text-transform: uppercase; letter-spacing: 1px;
 }
-.manual-meta { font-family: monospace; font-size: 0.75rem; color: #444; text-align: right; }
-.manual-body { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; line-height: 1.6; color: #222; }
-.manual-tag { 
-    display: inline-block; background: #000; color: #fff;
-    padding: 4px 12px; font-family: var(--font-headers); font-size: 0.7rem; margin-top: 25px; 
-    border-radius: 2px;
+.doc-class {
+    border: 1px solid #111; padding: 2px 5px; font-weight: bold;
+}
+.manual-title {
+    font-family: var(--font-headers); font-size: 1.6rem; 
+    text-transform: uppercase; color: #111; margin: 0; line-height: 1;
+}
+
+/* 2. CORPS */
+.manual-body { flex-grow: 1; }
+
+.manual-section { margin-bottom: 25px; }
+.section-label {
+    font-size: 0.8rem; font-weight: 800; color: var(--neon-pink);
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;
+    border-bottom: 1px dashed #999; display: inline-block;
+}
+
+.briefing-text {
+    font-size: 1rem; line-height: 1.5; text-align: justify; font-weight: 500;
+}
+
+/* 3. GRILLE D'INFOS (DATA GRID) */
+.manual-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #999;
+    padding: 15px;
+}
+
+.grid-item { display: flex; flex-direction: column; }
+.grid-item .label { 
+    font-size: 0.6rem; color: #666; font-family: monospace; letter-spacing: 1px; 
+}
+.grid-item .value { 
+    font-size: 1rem; font-weight: bold; color: #000; text-transform: uppercase; 
+}
+#m-tag { color: var(--neon-purple); }
+
+/* 4. FOOTER */
+.manual-footer {
+    margin-top: auto; border-top: 1px solid #ccc; padding-top: 10px;
+    text-align: center; font-size: 0.6rem; font-family: monospace; color: #888;
+    letter-spacing: 3px;
+}
+
+/* --- AJOUT POUR L'IMAGE STICKER --- */
+.sticker-img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: none; /* Géré par le JS */
 }
 
 /* (La face avant est inutile maintenant qu'on ne ferme plus, on la cache) */
