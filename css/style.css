@@ -106,5 +106,74 @@ ul { list-style: none; }
 .section-title { font-family: var(--font-headers); font-size: 2rem; text-align: center; margin-bottom: 10px; text-transform: uppercase; color: #fff; }
 .section-subtitle { text-align: center; color: #8892b0; margin-bottom: 50px; }
 
-/* LE RESTE (Footer, Newsletter, Responsive) reste ici ou dans un _footer.css si tu veux */
-/* J'ai laissé Footer/Newsletter ici pour simplifier, mais tu peux les bouger */
+/* =========================================
+   4. COMMUNITY & FOOTER (STYLES)
+   ========================================= */
+
+/* SECTION SOMBRE (Community) */
+/* Important : z-index 2 pour passer DEVANT la vidéo de fond */
+.section-dark {
+    position: relative; 
+    z-index: 2; 
+    background-color: #080808; /* Fond noir opaque */
+    padding: 80px 5%;
+    border-top: 2px solid #222;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.8); /* Ombre vers le haut */
+}
+
+/* GRILLE TÉMOIGNAGES */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* CARTE TÉMOIGNAGE */
+.testimonial-card {
+    background: #111;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 4px;
+    display: flex; gap: 15px; align-items: flex-start;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-purple); /* Bordure violette au survol */
+}
+
+/* AVATAR (Rond coloré) */
+.avatar {
+    width: 45px; height: 45px; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: bold; color: #000; flex-shrink: 0;
+    font-family: var(--font-headers);
+}
+
+.testimonial-card h4 { color: #fff; font-size: 0.9rem; margin-bottom: 5px; font-family: var(--font-headers); }
+.testimonial-card p { font-size: 0.9rem; color: #aaa; line-height: 1.5; font-style: italic; }
+
+/* FOOTER */
+footer {
+    position: relative; 
+    z-index: 2; /* Devant la vidéo aussi */
+    background: #000;
+    padding: 50px 5%;
+    border-top: 4px solid var(--neon-pink); /* Ligne rose fluo */
+    text-align: center;
+}
+
+.footer-content {
+    display: flex; flex-direction: column; align-items: center; gap: 25px;
+}
+
+.footer-links { display: flex; gap: 40px; }
+.footer-links a { 
+    color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; 
+    font-weight: bold; transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
+
+.copyright { color: #444; font-size: 0.7rem; font-family: monospace; }
