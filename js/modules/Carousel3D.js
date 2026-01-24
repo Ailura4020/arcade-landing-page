@@ -50,7 +50,7 @@ export function initCarousel(gamesData) {
                         </div>
                         <div class="action-row">
                             <span class="tag-badge">${game.tag}</span>
-                            <button class="btn-start">START</button>
+                            <button class="btn-start">DETAILS</button>
                         </div>
                     </div>
 
@@ -60,18 +60,23 @@ export function initCarousel(gamesData) {
             </div>
         `;
 
-        // Interaction Clic
-        item.addEventListener('click', (e) => {
-            if (currentIndex === index) {
-                // Si on clique sur le bouton START spécifiquement, on ouvre la modale
-                if(e.target.closest('.btn-start')) {
+        // Interaction Clic (Mise à jour)
+    item.addEventListener('click', (e) => {
+        if (currentIndex === index) {
+            if(e.target.closest('.btn-start')) {
+                
+                // 1. Déclencher l'effet "Balayage"
+                container.querySelector('.carousel-stage').classList.add('focus-mode');
+                
+                // 2. Ouvrir la modale (avec un petit délai pour laisser l'anim se faire)
+                setTimeout(() => {
                     ModalManager.open(game);
-                }
-            } else {
-                // Sinon on tourne le carrousel vers cet item
-                rotateTo(index);
+                }, 100); // 100ms de délai
             }
-        });
+        } else {
+            rotateTo(index);
+        }
+    });
 
         track.appendChild(item);
         items.push(item);
@@ -147,4 +152,8 @@ export function initCarousel(gamesData) {
 
     // Lancement initial
     rotateTo(0);
+    document.addEventListener('modal-closed', () => {
+        const stage = container.querySelector('.carousel-stage');
+        if(stage) stage.classList.remove('focus-mode');
+    });
 }
