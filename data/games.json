@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "NEON RONIN",
-        "poster": "assets/images/poster1.jpg",
+        "poster": "assets/images/poster1.webp",
         "video": "assets/videos/demo.mp4",
         "tag": "ACTION",
         "dev": "KATANA_SOFT",
@@ -17,7 +17,7 @@
     {
         "id": 2,
         "title": "VOID SCAVENGER",
-        "poster": "assets/images/poster2.jpg",
+        "poster": "assets/images/poster2.webp",
         "video": "assets/videos/demo2.mp4",
         "tag": "HORROR",
         "dev": "DEEPSPACE_DEV",
@@ -32,7 +32,7 @@
     {
         "id": 3,
         "title": "HYPER DRIFT",
-        "poster": "assets/images/poster3.jpeg",
+        "poster": "assets/images/poster3.webp",
         "video": "assets/videos/demo3.mp4",
         "tag": "RACING",
         "dev": "TURBO_TEAM",
@@ -47,7 +47,7 @@
     {
         "id": 4,
         "title": "TOMB RAIDER",
-        "poster": "assets/images/poster4.jpeg",
+        "poster": "assets/images/poster4.webp",
         "video": "assets/videos/demo4.mp4",
         "tag": "ADVENTURE",
         "dev": "CORE_DESIGN",
