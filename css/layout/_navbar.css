@@ -1,0 +1,106 @@
+/* =========================
+   LAYOUT : NAVIGATION
+   ========================= */
+
+.navbar {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 5%; 
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 1000;
+    /* Fond semi-transparent */
+    background: rgba(5, 5, 16, 0.95); 
+    border-bottom: 2px solid var(--accent-color);
+    box-shadow: 0 0 15px rgba(92, 107, 192, 0.4);
+}
+
+.logo { 
+    font-family: var(--font-headers); 
+    font-size: 1.4rem; 
+    color: var(--text-main); 
+    letter-spacing: -1px; 
+    text-shadow: 2px 2px 0px var(--primary-color);
+    z-index: 1001; 
+}
+
+/* LIENS BUREAU */
+.nav-links { 
+    display: flex; 
+    gap: 40px; 
+    align-items: center; 
+}
+
+.nav-links li { list-style: none; }
+
+.nav-links a:not(.btn-primary) { 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+    font-weight: 700; 
+    letter-spacing: 1px;
+    color: var(--text-muted); 
+    position: relative;
+}
+
+/* Effet souligné au survol */
+.nav-links a:not(.btn-primary)::after {
+    content: ''; 
+    position: absolute; 
+    width: 0; 
+    height: 2px; 
+    bottom: -5px; 
+    left: 0;
+    background: var(--primary-color); 
+    transition: width 0.3s;
+}
+
+.nav-links a:not(.btn-primary):hover { color: var(--text-main); }
+.nav-links a:not(.btn-primary):hover::after { width: 100%; }
+
+/* MENU BURGER (Mobile) */
+.hamburger { 
+    display: none; 
+    cursor: pointer; 
+    z-index: 1001; 
+}
+
+.hamburger span {
+    display: block; 
+    width: 25px; 
+    height: 3px; 
+    margin: 5px; 
+    background: var(--text-main); 
+    transition: all 0.3s ease;
+}
+
+/* RESPONSIVE MOBILE */
+@media screen and (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: absolute; 
+        right: 0px; 
+        top: 0px; 
+        height: 100vh;
+        background-color: var(--bg-dark);
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        width: 100%; 
+        transform: translateX(100%); 
+        transition: transform 0.5s ease-in;
+        border-left: 2px solid var(--accent-color);
+    }
+    
+    .nav-links.nav-active { transform: translateX(0%); }
+    
+    /* Animation Croix Burger */
+    .hamburger.toggle .span1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger.toggle .span2 { opacity: 0; }
+    .hamburger.toggle .span3 { transform: rotate(45deg) translate(-5px, -6px); }
+    
+    .nav-links li { margin: 20px 0; opacity: 1; }
+}

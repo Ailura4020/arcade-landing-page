@@ -1,40 +1,23 @@
-/* =========================================
-   COMPOSANT : CAROUSEL 3D COMPACT (STRUCTURE CORRIGÉE)
-   ========================================= */
+/* =========================
+   COMPOSANT : CAROUSEL 3D
+   ========================= */
 
-/* 1. CONTENEUR GLOBAL (Titre + Jeux) */
 #games-section {
-    /* C'est ICI qu'on règle le scroll pour que le titre ne soit pas caché */
     scroll-margin-top: 80px; 
-    
-    /* Layout */
-    width: 100%;
-    min-height: 100vh; /* Prend tout l'écran */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding-bottom: 50px;
+    width: 100%; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    position: relative; padding-bottom: 50px;
 }
+#showcase { width: 100%; }
 
-/* 2. LE CARROUSEL LUI-MÊME */
-#showcase {
-    width: 100%;
-    /* Le JS injecte les items ici */
-}
-
-/* BACKGROUND DYNAMIQUE */
+/* FOND DYNAMIQUE */
 .dynamic-background {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1; overflow: hidden;
-    background: #050505;
+    z-index: -1; overflow: hidden; background: #050505;
 }
 .dynamic-background::after {
-    content: ''; 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4); 
-    backdrop-filter: blur(2px);
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px);
 }
 .bg-media {
     width: 100%; height: 100%; object-fit: cover;
@@ -42,8 +25,7 @@
 }
 @keyframes fadeInBg { to { opacity: 0.6; transform: scale(1); } }
 
-
-/* SCENE GLOBALE */
+/* SCÈNE 3D */
 .carousel-stage {
     position: relative; width: 100%; height: 500px;
     display: flex; flex-direction: column; justify-content: center;
@@ -54,50 +36,38 @@
     display: flex; justify-content: center; align-items: center;
     transform-style: preserve-3d;
 }
-
-/* --- L'ITEM (BOITE DE JEU) --- */
 .carousel-item {
-    position: absolute;
-    width: 240px; height: 340px; 
+    position: absolute; width: 240px; height: 340px; 
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
 }
 
-/* LA BOITE 3D */
+/* BOITE SEGA */
 .sega-box-3d {
     width: 100%; height: 100%; position: relative;
     transform-style: preserve-3d;
     box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     transition: box-shadow 0.3s;
 }
-
 .box-face { position: absolute; backface-visibility: hidden; border-radius: 4px; }
 
-/* --- FACE AVANT --- */
+/* FACE AVANT */
 .face-front {
-    width: 100%; height: 100%;
-    background: #111; border: 2px solid #333;
-    display: flex; flex-direction: column; 
-    overflow: hidden;
+    width: 100%; height: 100%; background: #111; border: 2px solid #333;
+    display: flex; flex-direction: column; overflow: hidden;
 }
-
-/* HAUT (70%) : IMAGE */
 .box-poster {
-    flex: 7;
-    position: relative; overflow: hidden;
-    border-bottom: 2px solid var(--neon-blue);
+    flex: 7; position: relative; overflow: hidden;
+    border-bottom: 2px solid var(--secondary-color); /* Ligne Jaune */
 }
 .cover-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* BAS (30%) : INTERFACE */
 .box-interface {
-    flex: 3;
-    background: #080808; padding: 12px;
+    flex: 3; background: #080808; padding: 12px;
     display: flex; flex-direction: column; justify-content: space-between;
     background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
     background-size: 20px 20px;
 }
-
 .info-row { text-align: center; }
 .game-title { 
     font-family: var(--font-headers); font-size: 0.9rem; color: #fff; 
@@ -107,20 +77,13 @@
 
 .action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
 .tag-badge { 
-    font-size: 0.6rem; color: var(--neon-purple); border: 1px solid var(--neon-purple); 
+    font-size: 0.6rem; 
+    color: var(--accent-color); border: 1px solid var(--accent-color); 
     padding: 2px 6px; border-radius: 4px; text-transform: uppercase;
 }
+/* Note: Le bouton .btn-start est dans _buttons.css */
 
-.btn-start {
-    background: var(--neon-pink); border: none; padding: 6px 15px;
-    color: #fff; font-family: var(--font-headers); font-size: 0.7rem; cursor: pointer;
-    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
-    transition: 0.2s;
-}
-.btn-start:hover { background: #fff; color: var(--neon-pink); transform: scale(1.05); }
-
-
-/* --- AUTRES FACES 3D --- */
+/* AUTRES FACES */
 .face-side {
     right: 0; width: 30px; height: 100%; background: #050505;
     transform: rotateY(90deg) translateZ(15px) translateX(15px);
@@ -131,16 +94,15 @@
     transform: rotateX(90deg) translateZ(15px) translateY(-15px);
 }
 
-/* --- ETATS (POSITIONS) --- */
+/* ÉTATS ACTIFS */
 .carousel-item.is-center {
     transform: translateX(0) scale(1) translateZ(100px);
     z-index: 100; opacity: 1;
 }
 .carousel-item.is-center .sega-box-3d {
-    border: 2px solid var(--neon-blue);
-    box-shadow: 0 0 30px var(--neon-blue);
+    border: 2px solid var(--secondary-color); /* Bordure Jaune quand actif */
+    box-shadow: 0 0 30px var(--secondary-color);
 }
-
 .carousel-item.is-left {
     transform: translateX(-280px) scale(0.85) rotateY(20deg);
     z-index: 10; opacity: 0.5; filter: grayscale(80%) brightness(0.5); cursor: pointer;
@@ -157,82 +119,50 @@
 .carousel-item.is-hidden-left { transform: translateX(-600px) scale(0.5); opacity: 0; pointer-events: none; }
 .carousel-item.is-hidden-right { transform: translateX(600px) scale(0.5); opacity: 0; pointer-events: none; }
 
-
-/* UI NAVIGATION */
+/* CONTROLES */
 .carousel-controls {
     position: absolute; bottom: 20px; width: 100%;
     display: flex; justify-content: center; gap: 20px; margin-top: 60px;position: relative; z-index: 200;
-    
 }
 .nav-btn {
     background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;
     width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: 0.3s;
 }
-.nav-btn:hover { background: var(--neon-blue); border-color: var(--neon-blue); color: #000; }
+.nav-btn:hover { 
+    background: var(--secondary-color); 
+    border-color: var(--secondary-color); color: #000; 
+}
 .carousel-indicators { display: flex; gap: 8px; align-items: center; }
 .indicator-dot { width: 6px; height: 6px; background: #555; border-radius: 50%; cursor: pointer; transition: 0.3s; }
-.indicator-dot.active { background: var(--neon-blue); box-shadow: 0 0 5px var(--neon-blue); transform: scale(1.5); }
+.indicator-dot.active { 
+    background: var(--secondary-color); 
+    box-shadow: 0 0 5px var(--secondary-color); transform: scale(1.5); 
+}
 
-
-/* LE TITRE ARCADE */
+/* TITRE ARCADE */
 .arcade-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.5rem;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    /* On a retiré le margin-top excessif car le centrage se fait via le parent #games-section */
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 10;
-    text-shadow: 4px 4px 0px #000;
-    line-height: 1.5;
+    font-family: var(--font-headers); font-size: 1.5rem; color: #fff;
+    text-align: center; text-transform: uppercase; margin-bottom: 20px;
+    position: relative; z-index: 10; text-shadow: 4px 4px 0px #000; line-height: 1.5;
 }
-
 .arcade-title .highlight {
-    color: var(--neon-pink);
-    text-shadow: 0 0 15px var(--neon-pink);
-    display: block;
-    font-size: 1.8rem;
-    margin-top: 10px;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-color);
+    display: block; font-size: 1.8rem; margin-top: 10px;
 }
-/* --- EFFET BALAYAGE (DISPERSION) --- */
-/* Quand le carrousel est en mode "Focus", on cache les items non actifs */
 
+/* FOCUS MODE (Balayage) */
 .carousel-stage.focus-mode .carousel-item:not(.is-center) {
-    opacity: 0 !important;
-    transform: scale(0) !important; /* Ils rétrécissent et disparaissent */
-    transition: all 0.5s ease;
+    opacity: 0 !important; transform: scale(0) !important; transition: all 0.5s ease;
 }
-
-/* L'item central (celui cliqué) reste, mais on peut le cacher un poil après
-   pour laisser la modale prendre le relais visuellement */
 .carousel-stage.focus-mode .carousel-item.is-center {
-    opacity: 0;
-    transition: opacity 0.2s ease 0.3s; /* Petit délai */
+    opacity: 0; transition: opacity 0.2s ease 0.3s;
 }
-/* =========================================
-   EFFET DISPERSION (FOCUS MODE)
-   ========================================= */
-
-/* 1. LES JEUX À GAUCHE : Ils partent loin vers la gauche */
 .carousel-stage.focus-mode .carousel-item.is-left,
 .carousel-stage.focus-mode .carousel-item.is-hidden-left {
-    transform: translateX(-150vw) rotateY(45deg) scale(0.5) !important;
-    opacity: 0;
-    transition: all 0.6s ease-in; /* Accélération */
+    transform: translateX(-150vw) rotateY(45deg) scale(0.5) !important; opacity: 0; transition: all 0.6s ease-in;
 }
-
-/* 2. LES JEUX À DROITE : Ils partent loin vers la droite */
 .carousel-stage.focus-mode .carousel-item.is-right,
 .carousel-stage.focus-mode .carousel-item.is-hidden-right {
-    transform: translateX(150vw) rotateY(-45deg) scale(0.5) !important;
-    opacity: 0;
-    transition: all 0.6s ease-in;
-}
-
-/* 3. LE JEU CENTRAL : Il disparaît instantanément pour laisser place à la Modale */
-.carousel-stage.focus-mode .carousel-item.is-center {
-    opacity: 0;
-    transition: opacity 0.1s; /* Très rapide */
+    transform: translateX(150vw) rotateY(-45deg) scale(0.5) !important; opacity: 0; transition: all 0.6s ease-in;
 }

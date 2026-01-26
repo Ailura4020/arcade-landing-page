@@ -1,0 +1,29 @@
+/* REMISE À ZÉRO STANDARD */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
+    line-height: 1.6;
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+    transition: 0.3s; 
+}
+
+ul { 
+    list-style: none; 
+}
+
+img, video {
+    max-width: 100%;
+    display: block;
+}
