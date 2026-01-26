@@ -1,40 +1,46 @@
 /* =========================================
-   COMPOSANT : MODALE "VRAIE BOÎTE SEGA" (UNIFIÉE)
+   COMPOSANT : MODALE SEGA BOX (ISOMÉTRIQUE & SÉQUENCÉE)
    ========================================= */
 
-/* 1. FOND TRANSPARENT */
+/* 1. FOND ET CONTENEUR */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0); 
     z-index: 2000;
     display: flex; justify-content: center; align-items: center;
     opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-    perspective: 2500px; /* Perspective profonde */
+    perspective: 2500px; /* Perspective profonde pour l'effet 3D */
 }
-
 .modal-overlay.active { opacity: 1; pointer-events: all; }
 
-/* 2. LE CONTENEUR GLOBAL (LA BOÎTE ENTIÈRE) */
+/* LA BOITE GLOBALE (Le Conteneur 3D) */
 .sega-box-open {
-    width: 900px; height: 550px; /* Un peu plus large */
+    width: 900px; height: 550px;
     position: relative;
     transform-style: preserve-3d;
-    display: flex; /* Important pour coller les deux parties */
+    display: flex;
     
-    /* État initial (caché, petit, angle neutre) */
+    /* ÉTAT INITIAL (INVISIBLE) : Reculée, Fermée, et angle neutre */
     transform: scale(0.8) rotateY(0deg) translateY(50px);
     opacity: 0; 
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Effet "Pop" élastique */
     
-    /* Flottement léger */
+    /* Animation d'arrivée (Pop-in élastique) */
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     animation: floatingBox 5s infinite ease-in-out;
 }
 
-/* QUAND ACTIVE : La boîte surgit et prend son angle 3D final */
+/* QUAND ACTIVE : C'est ici l'ISOMÉTRIE (-15deg) */
 .modal-overlay.active .sega-box-open {
-    /* On l'oriente légèrement sur la droite pour un beau rendu 3D */
+    /* On l'oriente à -15deg pour bien voir la tranche et l'épaisseur */
     transform: scale(1) rotateY(-15deg) translateY(0px);
     opacity: 1;
+}
+
+/* QUAND ELLE FERME : Elle recule */
+.modal-overlay.is-closing .sega-box-open {
+    transform: scale(0.8) rotateY(0deg) translateY(50px);
+    opacity: 0;
+    transition-delay: 0.5s; /* On attend que la porte claque avant de disparaître */
 }
 
 @keyframes floatingBox {
@@ -42,197 +48,137 @@
     50% { margin-top: -15px; }
 }
 
-
 /* =========================================
-   A. PARTIE GAUCHE (MANUEL DANS LE PLASTIQUE)
+   2. PARTIE GAUCHE (LA PORTE MOBILE)
    ========================================= */
 .box-left-panel {
     width: 50%; height: 100%;
-    position: relative; /* Plus absolute */
+    position: relative;
     transform-style: preserve-3d;
-    
-    /* On donne un léger angle vers l'intérieur pour faire "ouvert" */
     transform-origin: right center;
-    transform: rotateY(5deg);
     z-index: 2;
+    transform: rotateY(179deg); 
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Le "bac" plastique gauche qui tient le manuel */
+/* QUAND ACTIVE : S'OUVRE (Reste à 5deg ou 0deg) */
+.modal-overlay.active .box-left-panel {
+    transform: rotateY(5deg); 
+    transition-delay: 0.4s; 
+}
+
+.modal-overlay.is-closing .box-left-panel {
+    transform: rotateY(179deg); 
+    transition-duration: 0.4s;
+    transition-delay: 0s;
+    transition-timing-function: ease-in;
+}
+/* INTÉRIEUR GAUCHE (Manuel) */
 .cover-back-manual {
     position: absolute; width: 100%; height: 100%;
     backface-visibility: hidden;
-    
-    /* Style plastique noir intérieur */
     background: #111;
-    /* Bordure épaisse à droite pour la charnière centrale */
     border-right: 4px solid #000; 
     border-top: 2px solid #222; border-bottom: 2px solid #222; border-left: 2px solid #222;
-    
     color: #eee; padding: 30px;
     border-radius: 6px 0 0 6px;
     display: flex; flex-direction: column; overflow-y: auto;
-    
     background-image: radial-gradient(#1a1a1a 15%, transparent 16%);
     background-size: 8px 8px;
-    /* Ombre forte vers le centre pour la profondeur */
     box-shadow: inset -15px 0 25px rgba(0,0,0,0.8);
 }
 
-.manual-paper-effect {
-    background: #e6e6e6; /* Gris très clair */
-    color: #222;
-    padding: 25px;
-    height: 100%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    border-radius: 2px;
-    overflow-y: auto;
-    font-family: 'Rajdhani', sans-serif;
-    display: flex; flex-direction: column;
-    
-    /* Motif de fond subtil (quadrillage technique) */
-    background-image: 
-        linear-gradient(#ccc 1px, transparent 1px),
-        linear-gradient(90deg, #ccc 1px, transparent 1px);
-    background-size: 20px 20px;
+/* EXTÉRIEUR GAUCHE (Jaquette - Visible quand fermé) */
+.cover-front {
+    display: block; /* Toujours active pour l'animation */
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg); /* Dos au manuel */
+    background: #000; border: 2px solid #222; border-radius: 6px 0 0 6px;
+    overflow: hidden;
+    /* Ombre portée sur la tranche */
+    box-shadow: inset -5px 0 15px rgba(0,0,0,0.8); 
 }
-
-/* 1. EN-TÊTE */
-.manual-header {
-    border-bottom: 3px solid #111;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-.header-top {
-    display: flex; justify-content: space-between; margin-bottom: 5px;
-    font-family: monospace; font-size: 0.7rem; color: #555;
-    text-transform: uppercase; letter-spacing: 1px;
-}
-.doc-class {
-    border: 1px solid #111; padding: 2px 5px; font-weight: bold;
-}
-.manual-title {
-    font-family: var(--font-headers); font-size: 1.6rem; 
-    text-transform: uppercase; color: #111; margin: 0; line-height: 1;
-}
-
-/* 2. CORPS */
-.manual-body { flex-grow: 1; }
-
-.manual-section { margin-bottom: 25px; }
-.section-label {
-    font-size: 0.8rem; font-weight: 800; color: var(--neon-pink);
-    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;
-    border-bottom: 1px dashed #999; display: inline-block;
-}
-
-.briefing-text {
-    font-size: 1rem; line-height: 1.5; text-align: justify; font-weight: 500;
-}
-
-/* 3. GRILLE D'INFOS (DATA GRID) */
-.manual-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
-    background: rgba(255,255,255,0.6);
-    border: 1px solid #999;
-    padding: 15px;
-}
-
-.grid-item { display: flex; flex-direction: column; }
-.grid-item .label { 
-    font-size: 0.6rem; color: #666; font-family: monospace; letter-spacing: 1px; 
-}
-.grid-item .value { 
-    font-size: 1rem; font-weight: bold; color: #000; text-transform: uppercase; 
-}
-#m-tag { color: var(--neon-purple); }
-
-/* 4. FOOTER */
-.manual-footer {
-    margin-top: auto; border-top: 1px solid #ccc; padding-top: 10px;
-    text-align: center; font-size: 0.6rem; font-family: monospace; color: #888;
-    letter-spacing: 3px;
-}
-
-/* --- AJOUT POUR L'IMAGE STICKER --- */
-.sticker-img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: none; /* Géré par le JS */
-}
-
-/* (La face avant est inutile maintenant qu'on ne ferme plus, on la cache) */
-.cover-front { display: none; }
+.full-cover-img { width: 100%; height: 100%; object-fit: cover; }
 
 
 /* =========================================
-   B. PARTIE DROITE (EMPLACEMENT CARTOUCHE)
+   3. PARTIE DROITE (FIXE)
    ========================================= */
 .box-right-panel {
     width: 50%; height: 100%;
     position: relative;
     transform-style: preserve-3d;
-
-    /* On donne un léger angle opposé pour rejoindre le centre */
     transform-origin: left center;
-    transform: rotateY(-5deg);
+    transform: rotateY(-5deg); /* Complète l'angle de la partie gauche */
     z-index: 1;
-    
     background: #111;
-    /* Pas de bordure à gauche (géré par le panneau gauche) */
     border: 2px solid #222; border-left: none;
     border-radius: 0 6px 6px 0;
-    
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    
-    /* Ombre portée globale de la boite + Ombre interne vers la charnière */
     box-shadow: 20px 20px 50px rgba(0,0,0,0.5), inset 15px 0 25px rgba(0,0,0,0.8);
-    
     background-image: radial-gradient(#1a1a1a 15%, transparent 16%);
     background-size: 10px 10px;
 }
 
+/* DÉTAILS INTÉRIEURS (Cartouche, etc.) */
 .cartridge-shape {
-    width: 85%; height: 65%;
-    background: #1a1a1a;
-    border-radius: 4px;
-    /* Effet d'enfoncement dans le plastique */
-    box-shadow: inset 0 0 15px #000, 1px 1px 2px rgba(255,255,255,0.1);
-    position: relative;
-    padding: 15px;
-    border-top: 20px solid #222;
+    width: 85%; height: 65%; background: #1a1a1a;
+    border-radius: 4px; box-shadow: inset 0 0 15px #000, 1px 1px 2px rgba(255,255,255,0.1);
+    position: relative; padding: 15px; border-top: 20px solid #222;
     display: flex; justify-content: center; align-items: center;
 }
+.cartridge-sticker { width: 100%; height: 85%; background: #000; border-radius: 2px; overflow: hidden; border: 1px solid #000; position: relative; }
+.modal-video, .sticker-img { width: 100%; height: 100%; object-fit: cover; }
+.sticker-img { display: none; }
 
-.cartridge-sticker {
-    width: 100%; height: 85%;
-    background: #000;
-    border-radius: 2px;
-    overflow: hidden;
-    border: 1px solid #000;
-    position: relative;
+.manual-paper-effect {
+    background: #e6e6e6; color: #222; padding: 25px; height: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); border-radius: 2px; overflow-y: auto;
+    font-family: 'Rajdhani', sans-serif; display: flex; flex-direction: column;
+    background-image: linear-gradient(#ccc 1px, transparent 1px), linear-gradient(90deg, #ccc 1px, transparent 1px);
+    background-size: 20px 20px;
 }
-.modal-video { width: 100%; height: 100%; object-fit: cover; }
+/* Styles Textes Manuel */
+.manual-header { border-bottom: 3px solid #111; padding-bottom: 15px; margin-bottom: 20px; }
+.header-top { display: flex; justify-content: space-between; margin-bottom: 5px; font-family: monospace; font-size: 0.7rem; color: #555; text-transform: uppercase; }
+.doc-class { border: 1px solid #111; padding: 2px 5px; font-weight: bold; }
+.manual-title { font-family: var(--font-headers); font-size: 1.6rem; text-transform: uppercase; color: #111; margin: 0; line-height: 1; }
+.manual-body { flex-grow: 1; }
+.manual-section { margin-bottom: 25px; }
+.section-label { font-size: 0.8rem; font-weight: 800; color: var(--neon-pink); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; border-bottom: 1px dashed #999; display: inline-block; }
+.briefing-text { font-size: 1rem; line-height: 1.5; text-align: justify; font-weight: 500; }
+.manual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: rgba(255,255,255,0.6); border: 1px solid #999; padding: 15px; }
+.grid-item { display: flex; flex-direction: column; }
+.grid-item .label { font-size: 0.6rem; color: #666; font-family: monospace; letter-spacing: 1px; }
+.grid-item .value { font-size: 1rem; font-weight: bold; color: #000; text-transform: uppercase; }
+#m-tag { color: var(--neon-purple); }
+.manual-footer { margin-top: auto; padding-top: 15px; border-top: 1px dashed #999; display: flex; justify-content: center; gap: 15px; min-height: 40px; align-items: center; }
 
-/* BOUTONS */
+/* BOUTONS ET LIENS */
 .close-cross {
-    position: absolute; top: -25px; right: -25px; /* Un peu plus sorti */
+    position: absolute; top: -25px; right: -25px;
     width: 45px; height: 45px; background: var(--neon-pink);
     color: #fff; font-size: 1.5rem; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
     cursor: pointer; box-shadow: 0 5px 15px rgba(255, 60, 0, 0.4);
-    z-index: 100; transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100; transition: 0.3s;
 }
 .close-cross:hover { transform: scale(1.15) rotate(90deg); background: #fff; color: var(--neon-pink); }
-
 .insert-coin-btn {
-    margin-top: 30px;
-    background: var(--neon-blue); border: none;
+    margin-top: 30px; background: var(--neon-blue); border: none;
     color: #000; font-family: var(--font-headers); font-size: 1.1rem;
     padding: 12px 40px; cursor: pointer; text-transform: uppercase;
     clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
     transition: 0.2s;
 }
 .insert-coin-btn:hover { background: #fff; box-shadow: 0 0 20px #fff; transform: translateY(-2px); }
-
+.social-link-btn { display: inline-block; padding: 5px 10px; border: 2px solid #333; color: #333; font-family: var(--font-headers); font-size: 0.7rem; text-transform: uppercase; text-decoration: none; transition: all 0.2s; background: rgba(255,255,255,0.5); transform: rotate(-2deg); }
+.social-link-btn:nth-child(even) { transform: rotate(2deg); }
+.social-link-btn:hover { background: #111; color: #fff; transform: scale(1.1) rotate(0deg); box-shadow: 2px 2px 0px rgba(0,0,0,0.2); }
+.social-link-btn.github:hover { border-color: #6e5494; background: #6e5494; }
+.social-link-btn.itch:hover { border-color: #fa5c5c; background: #fa5c5c; }
+.social-link-btn.web:hover { border-color: var(--neon-blue); background: var(--neon-blue); color: #000; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -241,45 +187,5 @@
     .cover-back-manual { border-right: 2px solid #222; border-radius: 6px; }
     .box-right-panel { border-left: 2px solid #222; border-radius: 6px; margin-top: 20px; }
     .close-cross { top: 10px; right: 10px; }
+    .cover-front { display: none; } 
 }
-
-/* --- BOUTONS SOCIAUX (DANS LE FOOTER DU MANUEL) --- */
-
-/* Le conteneur (Footer) */
-.manual-footer {
-    margin-top: auto; 
-    padding-top: 15px; border-top: 1px dashed #999; /* Ligne pointillée comme un ticket */
-    display: flex; justify-content: center; gap: 15px;
-    min-height: 40px; align-items: center;
-}
-
-/* Le style du bouton "Lien" */
-.social-link-btn {
-    display: inline-block;
-    padding: 5px 10px;
-    border: 2px solid #333;
-    color: #333;
-    font-family: var(--font-headers); /* Police Pixel */
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-    background: rgba(255,255,255,0.5);
-    transform: rotate(-2deg); /* Un peu penché comme un tampon mal mis */
-}
-
-/* Chaque 2ème bouton penche de l'autre côté pour le réalisme */
-.social-link-btn:nth-child(even) { transform: rotate(2deg); }
-
-/* Au survol */
-.social-link-btn:hover {
-    background: #111;
-    color: #fff;
-    transform: scale(1.1) rotate(0deg); /* Se redresse */
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-}
-
-/* Couleurs spécifiques (Optionnel, pour faire joli) */
-.social-link-btn.github:hover { border-color: #6e5494; background: #6e5494; }
-.social-link-btn.itch:hover { border-color: #fa5c5c; background: #fa5c5c; }
-.social-link-btn.web:hover { border-color: var(--neon-blue); background: var(--neon-blue); color: #000; }
