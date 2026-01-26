@@ -1,163 +1,22 @@
-/* =========================================
-   1. IMPORTS & CONFIGURATION
-   ========================================= */
+/* ============================================================
+   PIXEL_FORGE ENGINE - MAIN STYLESHEET
+   Architecture: Atomic Design (Base > Layout > Components)
+   ============================================================ */
+
+/* 1. CONFIGURATION & FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@300;500;700&display=swap');
 
-/* Import des Composants Modulaires */
-@import './components/_hero.css';      
-@import './components/_carousel.css';  
-@import url('components/_modal.css');  
-:root {
-    /* --- PALETTE "URBAN BRAWL" --- */
-    --bg-color: #0d1117;       
-    --text-main: #ffffff;      
-    --neon-pink: #ff3c00;      
-    --neon-blue: #ffcc00;      
-    --neon-purple: #5c6bc0;    
-    
-    --font-headers: 'Press Start 2P', cursive; 
-    --font-text: 'Rajdhani', sans-serif;       
-}
+/* 2. BASE */
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
 
-/* =========================================
-   2. RESET & BASE
-   ========================================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* 3. LAYOUT */
+@import './layout/_navbar.css';    
+@import './layout/_hero.css';      
+@import './layout/_footer.css';    
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: var(--font-text);
-    overflow-x: hidden;
-}
-
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; }
-
-
-/* =========================================
-   3. NAVBAR (Alignement Droite + Mobile)
-   ========================================= */
-.navbar {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    padding: 20px 5%; 
-    position: fixed; width: 100%; top: 0; z-index: 1000;
-    background: rgba(5, 5, 16, 0.95); 
-    border-bottom: 2px solid var(--neon-purple);
-    box-shadow: 0 0 15px rgba(92, 107, 192, 0.4);
-}
-
-.logo { 
-    font-family: var(--font-headers); font-size: 1.4rem; color: #fff; 
-    letter-spacing: -1px; text-shadow: 2px 2px 0px var(--neon-pink);
-    z-index: 1001; 
-}
-.highlight { color: var(--neon-blue); }
-
-/* LIENS DESKTOP */
-.nav-links { 
-    display: flex; gap: 40px; align-items: center; 
-}
-.nav-links li { list-style: none; }
-
-.nav-links a:not(.btn-primary) { 
-    font-size: 1rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
-    color: #ccc; position: relative;
-}
-.nav-links a:not(.btn-primary)::after {
-    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
-    background: var(--neon-pink); transition: width 0.3s;
-}
-.nav-links a:not(.btn-primary):hover { color: #fff; }
-.nav-links a:not(.btn-primary):hover::after { width: 100%; }
-
-/* BOUTON DOWNLOAD */
-.btn-primary {
-    background-color: var(--neon-blue); color: #000; padding: 10px 25px;
-    font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-    transition: all 0.3s ease;
-}
-.btn-primary:hover { background-color: #fff; box-shadow: 0 0 20px var(--neon-blue); transform: translateY(-2px); }
-
-/* MENU HAMBURGER */
-.hamburger { display: none; cursor: pointer; z-index: 1001; }
-.hamburger span {
-    display: block; width: 25px; height: 3px; margin: 5px; 
-    background: #fff; transition: all 0.3s ease;
-}
-
-/* =========================================
-   4. SECTIONS GLOBALES & FOOTER
-   ========================================= */
-.section-padding { padding: 80px 5%; position: relative; }
-.container { max-width: 1200px; margin: 0 auto; }
-.section-title { font-family: var(--font-headers); font-size: 2rem; text-align: center; margin-bottom: 10px; text-transform: uppercase; color: #fff; }
-.section-subtitle { text-align: center; color: #8892b0; margin-bottom: 50px; }
-
-/* COMMUNITY SECTION */
-.section-dark {
-    position: relative; z-index: 2; 
-    background-color: #080808; 
-    padding: 80px 5%;
-    border-top: 2px solid #222;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.8); 
-}
-
-.testimonials-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; margin-top: 50px;
-}
-.testimonial-card {
-    background: #111; border: 1px solid #333; padding: 25px;
-    border-radius: 4px; display: flex; gap: 15px; align-items: flex-start;
-    transition: transform 0.3s, border-color 0.3s;
-}
-.testimonial-card:hover { transform: translateY(-5px); border-color: var(--neon-purple); }
-
-.avatar {
-    width: 45px; height: 45px; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    font-weight: bold; color: #000; flex-shrink: 0; font-family: var(--font-headers);
-}
-.testimonial-card h4 { color: #fff; font-size: 0.9rem; margin-bottom: 5px; font-family: var(--font-headers); }
-.testimonial-card p { font-size: 0.9rem; color: #aaa; line-height: 1.5; font-style: italic; }
-
-/* FOOTER */
-footer {
-    position: relative; z-index: 2; 
-    background: #000; padding: 50px 5%;
-    border-top: 4px solid var(--neon-pink); text-align: center;
-}
-.footer-content { display: flex; flex-direction: column; align-items: center; gap: 25px; }
-.footer-links { display: flex; gap: 40px; }
-.footer-links a { 
-    color: #888; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; 
-    font-weight: bold; transition: color 0.3s;
-}
-.footer-links a:hover { color: var(--neon-blue); text-shadow: 0 0 8px var(--neon-blue); }
-.copyright { color: #444; font-size: 0.7rem; font-family: monospace; }
-
-
-/* =========================================
-   RESPONSIVE (TABLETTE & MOBILE)
-   ========================================= */
-@media screen and (max-width: 768px) {
-    .hamburger { display: block; }
-    .nav-links {
-        position: absolute; right: 0px; top: 0px; height: 100vh;
-        background-color: var(--bg-color);
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        width: 100%; 
-        transform: translateX(100%); 
-        transition: transform 0.5s ease-in;
-        border-left: 2px solid var(--neon-purple);
-    }
-    .nav-links.nav-active { transform: translateX(0%); }
-    .hamburger.toggle .span1 { transform: rotate(-45deg) translate(-5px, 6px); }
-    .hamburger.toggle .span2 { opacity: 0; }
-    .hamburger.toggle .span3 { transform: rotate(45deg) translate(-5px, -6px); }
-    .nav-links li { margin: 20px 0; opacity: 1; }
-}
+/* 4. COMPONENTS */
+@import './components/_buttons.css';  
+@import './components/_carousel.css';
+@import './components/_modal.css';
