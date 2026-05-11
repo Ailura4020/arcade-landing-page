@@ -1,0 +1,62 @@
+/* =========================
+   LAYOUT : COMMUNITY SECTION
+   ========================= */
+
+#community {
+    /* 1. LE FOND (Pour cacher le fond de Games) */
+    background-color: var(--bg-dark); 
+    /* Petite texture optionnelle pour le style */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    
+    position: relative;
+    border-top: 4px solid var(--accent-color);
+    z-index: 10; 
+    
+    /* 2. LE SCROLL (Marge invisible pour que le titre ne soit pas caché) */
+    scroll-margin-top: 100px; 
+    
+    padding: 80px 5%;
+    min-height: 80vh; 
+}
+
+/* 3. LA STRUCTURE CÔTE À CÔTE (Split Screen) */
+.community-layout {
+    display: flex;       
+    flex-direction: row; /* Horizontal */
+    align-items: flex-start;
+    gap: 60px;           
+    max-width: var(--container-width);
+    margin: 0 auto;      
+}
+
+/* COLONNE GAUCHE (Hall of Fame) */
+.community-left {
+    flex: 3; /* 60% */
+    min-width: 0; 
+}
+
+/* COLONNE DROITE (Lobby) */
+.community-right {
+    flex: 2; /* 40% */
+    position: sticky; /* Reste visible au scroll */
+    top: 120px;
+}
+
+/* RESPONSIVE (Mobile) */
+@media (max-width: 1024px) {
+    .community-layout {
+        flex-direction: column; /* Vertical */
+        gap: 50px;
+    }
+    .community-right {
+        position: static;
+        width: 100%;
+    }
+    .arcade-header {
+        justify-content: center;
+        text-align: center;
+    }
+}

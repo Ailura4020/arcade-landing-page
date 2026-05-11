@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "NEON RONIN",
+        "poster": "assets/images/poster1.webp",
+        "video": "assets/videos/demo.mp4",
+        "tag": "ACTION",
+        "dev": "KATANA_SOFT",
+        "year": "2026",
+        "description": "Un beat-them-up cyberpunk dans un Neo-Tokyo dévasté.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    },
+    {
+        "id": 2,
+        "title": "VOID SCAVENGER",
+        "poster": "assets/images/poster2.webp",
+        "video": "assets/videos/demo2.mp4",
+        "tag": "HORROR",
+        "dev": "DEEPSPACE_DEV",
+        "year": "2025",
+        "description": "Survivrez-vous au silence de l'espace ?",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    },
+    {
+        "id": 3,
+        "title": "HYPER DRIFT",
+        "poster": "assets/images/poster3.webp",
+        "video": "assets/videos/demo3.mp4",
+        "tag": "RACING",
+        "dev": "TURBO_TEAM",
+        "year": "2026",
+        "description": "La course arcade ultime à 300km/h.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    },
+    {
+        "id": 4,
+        "title": "TOMB RAIDER",
+        "poster": "assets/images/poster4.webp",
+        "video": "assets/videos/demo4.mp4",
+        "tag": "ADVENTURE",
+        "dev": "CORE_DESIGN",
+        "year": "1996",
+        "description": "L'aventure originale qui a tout commencé.",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    },
+    {
+        "id": 5,
+        "title": "SONIC",
+        "poster": "assets/images/poster5.webp",
+        "video": "",
+        "tag": "PLATFORM",
+        "dev": "SEGA_TEAM",
+        "year": "1991",
+        "description": "Gotta go fast!",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    },
+    {
+        "id": 5,
+        "title": "MARIO",
+        "poster": "",
+        "video": "",
+        "tag": "TEST",
+        "dev": "SEGA_TEAM",
+        "year": "1991",
+        "description": "Gotta go fast!",
+        "links": {
+            "github": "https://github.com",
+            "itch": "https://itch.io",
+            "web": "https://google.com"
+        }
+    }
+]

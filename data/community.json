@@ -1,0 +1,34 @@
+[
+    {
+        "rank": "1ST",
+        "username": "PIXEL_WIZARD",
+        "role": "INDIE DEV",
+        "score": "99999",
+        "message": "Ce moteur est une tuerie pour le pixel art. Zéro flou, pur rétro.",
+        "platform": "PC"
+    },
+    {
+        "rank": "2ND",
+        "username": "K_TANA_DEV",
+        "role": "ARTIST",
+        "score": "98500",
+        "message": "L'export WebGL fonctionne en 1 clic. J'ai porté mon jeu en 10 min.",
+        "platform": "WEB"
+    },
+    {
+        "rank": "3RD",
+        "username": "NEON_RIDER",
+        "role": "GAME DESIGNER",
+        "score": "95000",
+        "message": "La communauté Discord m'a débloqué mon script en pleine nuit. Best vibes.",
+        "platform": "MAC"
+    },
+    {
+        "rank": "4TH",
+        "username": "RETRO_BOY",
+        "role": "PLAYER",
+        "score": "89000",
+        "message": "Enfin un outil accessible qui ne demande pas un doctorat en C++.",
+        "platform": "LINUX"
+    }
+]

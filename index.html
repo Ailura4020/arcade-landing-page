@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXEL_FORGE - The Ultimate Indie Engine</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="dynamic-bg" class="dynamic-background"></div>
+
+    <nav class="navbar">
+        <div class="logo">PIXEL_<span class="highlight">FORGE</span></div>
+        
+        <ul class="nav-links">
+            <li><a href="#hero">Start</a></li>
+            <li><a href="#games-section">Games</a></li> 
+            <li><a href="#community">Community</a></li>
+            <li><a href="#" class="btn-primary">Download Engine</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <span class="span1"></span><span class="span2"></span><span class="span3"></span>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="hero-bg-image"></div> 
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="main-title">Insert Coin <span class="glitch" data-text="to Start">to Start</span> ?</h1>
+            <p class="hero-subtitle">Le moteur open-source pour les créateurs de mondes virtuels.</p>
+        </div>
+        <div class="scroll-indicator">
+            <span class="go-text">GO</span>
+            <span class="arrow">▼</span>
+        </div>
+    </header>
+
+   <main>
+        <section id="games-section">
+            
+            <h2 class="arcade-title">SELECT YOUR <span class="highlight">GAME CARTRIDGE</span></h2>
+
+            <section id="showcase"></section>
+
+        </section>
+   </main>
+
+   <section id="community" class="section-padding">
+        <div class="container">
+            
+            <div class="community-layout">
+                
+                <div class="community-left">
+                    <div class="arcade-header">
+                        <h2 class="section-title" style="text-align: left;">HALL OF <span class="highlight">FAME</span></h2>
+                        <div class="coin-insert">CREDITS: 02</div>
+                    </div>
+                    
+                    <div id="community-feed" class="leaderboard-container">
+                        <div class="loading-text">LOADING SCORES...</div>
+                    </div>
+                </div>
+
+                <div class="community-right">
+                    <div class="lobby-card">
+                        <div class="lobby-header">
+                            <div class="server-status">
+                                <span class="status-dot blink"></span> SERVER ONLINE
+                            </div>
+                            <div class="ping-stat">PING: 24ms</div>
+                        </div>
+
+                        <div class="lobby-content">
+                            <h3 class="lobby-title">JOIN THE PARTY</h3>
+                            <p class="lobby-desc">Rejoignez 12,405 développeurs connectés sur le réseau Pixel_Forge.</p>
+                            
+                            <div class="server-actions">
+                                <a href="#" class="btn-server discord">
+                                    <span class="btn-icon">🎤</span> 
+                                    <div class="btn-txt">
+                                        <span class="main">CONNECT TO DISCORD</span>
+                                        <span class="sub">Voice & Dev Chat</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="#" class="btn-server github">
+                                    <span class="btn-icon">💾</span> 
+                                    <div class="btn-txt">
+                                        <span class="main">ACCESS SOURCE CODE</span>
+                                        <span class="sub">GitHub Repository</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">PIXEL_<span class="highlight">FORGE</span></div>
+            <ul class="footer-links">
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Discord</a></li>
+            </ul>
+            <p class="copyright">&copy; 2026 PIXEL_FORGE ENGINE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="game-modal" class="modal-overlay"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

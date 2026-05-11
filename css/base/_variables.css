@@ -1,0 +1,38 @@
+:root {
+    /* =========================
+       1. IDENTITÉ VISUELLE (NOUVEAU)
+       ========================= */
+    /* L'Orange/Rouge du Logo Pixel_Forge */
+    --primary-color: #ff3c00;   
+    
+    /* Le Jaune du bouton Download */
+    --secondary-color: #ffcc00; 
+
+    /* Le Violet/Bleu des ombres et accents */
+    --accent-color: #5c6bc0;    
+
+    /* =========================
+       2. COULEURS DE FOND
+       ========================= */
+    --bg-dark: #0d1117;       
+    --bg-card: #111111;
+    --bg-overlay: rgba(0,0,0,0.8);
+
+    /* =========================
+       3. TEXTE & TYPO
+       ========================= */
+    --text-main: #ffffff;
+    --text-muted: #8892b0;
+    
+    --font-headers: 'Press Start 2P', cursive; 
+    --font-body: 'Rajdhani', sans-serif;
+
+    /* =========================
+       🚨 4. PATCH DE SECURITÉ (OBLIGATOIRE)
+       On connecte les anciens noms aux nouveaux pour que RIEN ne casse.
+       ========================= */
+    --neon-pink: var(--primary-color);
+    --neon-blue: var(--secondary-color);
+    --neon-purple: var(--accent-color);
+    --bg-color: var(--bg-dark);
+}
