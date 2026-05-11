@@ -3,6 +3,7 @@
    ========================================= */
 import { initCarousel } from './modules/Carousel3D.js';
 import { ModalManager } from './modules/ModalManager.js';
+import { CommunityManager } from './modules/CommunityManager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 1. Initialisation des composants statiques
     ModalManager.init();
     initMobileMenu(); // Gestion du menu burger
+    CommunityManager.init();
 
     // 2. Chargement des données JEUX depuis le JSON (Fetch)
     try {
