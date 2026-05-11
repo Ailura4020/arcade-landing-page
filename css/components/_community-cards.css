@@ -1,0 +1,100 @@
+/* =========================
+   COMPOSANT : COMMUNITY CARDS (LEADERBOARD & LOBBY)
+   ========================= */
+
+/* --- 1. LEADERBOARD (Gauche) --- */
+.arcade-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;
+}
+.coin-insert {
+    font-family: var(--font-headers); color: var(--secondary-color);
+    animation: blink 1s infinite;
+}
+
+.leaderboard-container {
+    background: rgba(0,0,0,0.3); /* Fond légèrement teinté */
+    border: 2px solid #333;
+    padding: 10px;
+}
+
+/* Ligne du tableau */
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px; /* Simplifié pour écran large */
+    gap: 15px; align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px dashed #444;
+    transition: 0.2s;
+}
+/* On réajuste pour le message au milieu si l'écran le permet */
+@media (min-width: 1200px) {
+    .leaderboard-row { grid-template-columns: 60px 200px 1fr 100px; }
+}
+
+.leaderboard-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--primary-color);
+}
+.leaderboard-row:last-child { border-bottom: none; }
+
+/* Styles Textes */
+.rank-col { font-family: var(--font-headers); color: var(--secondary-color); font-size: 0.8rem; }
+.player-name { font-weight: bold; color: var(--text-main); font-family: monospace; letter-spacing: 1px; display: block; }
+.player-role { font-size: 0.6rem; color: #666; text-transform: uppercase; }
+.msg-col { font-style: italic; color: #aaa; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.score-val { font-family: var(--font-headers); color: var(--primary-color); font-size: 0.8rem; display: block; text-align: right; }
+.platform-badge { font-size: 0.6rem; background: #333; padding: 2px 4px; border-radius: 3px; display: inline-block; float: right; margin-top: 5px; }
+
+
+/* --- 2. SERVER LOBBY (Droite) --- */
+.lobby-card {
+    background: #000; 
+    border: 2px solid #333;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5); /* Ombre dure rétro */
+    display: flex; flex-direction: column;
+}
+
+.lobby-header {
+    background: #111; padding: 10px 20px;
+    display: flex; justify-content: space-between;
+    border-bottom: 2px solid #333; font-family: monospace; font-size: 0.8rem;
+}
+.server-status { color: #00ff00; display: flex; align-items: center; gap: 8px; }
+.status-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: block; }
+.status-dot.blink { box-shadow: 0 0 5px #00ff00; animation: blink 2s infinite; }
+.ping-stat { color: #666; }
+
+.lobby-content { padding: 30px; text-align: center; }
+.lobby-title { color: #fff; font-family: var(--font-headers); margin-bottom: 10px; font-size: 1.2rem; text-transform: uppercase; }
+.lobby-desc { color: #888; margin-bottom: 30px; font-size: 0.9rem; }
+
+.server-actions { display: flex; flex-direction: column; gap: 15px; }
+
+/* Boutons Serveur */
+.btn-server {
+    display: flex; align-items: center; gap: 15px;
+    padding: 15px; border: 2px solid #444;
+    text-decoration: none; transition: all 0.2s;
+    background: rgba(255,255,255,0.02);
+}
+.btn-server:hover {
+    border-color: var(--secondary-color);
+    background: rgba(255, 204, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.btn-icon { font-size: 1.5rem; }
+.btn-txt { display: flex; flex-direction: column; text-align: left; }
+.btn-txt .main { font-family: var(--font-headers); font-size: 0.7rem; color: #fff; margin-bottom: 2px; }
+.btn-txt .sub { font-size: 0.7rem; color: #666; text-transform: uppercase; }
+
+.lobby-footer {
+    background: var(--primary-color); color: #fff;
+    text-align: center; padding: 8px;
+    font-family: var(--font-headers); font-size: 0.7rem;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
